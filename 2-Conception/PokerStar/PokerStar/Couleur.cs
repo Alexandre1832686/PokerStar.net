@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokerStar
+enum Couleur
 {
-    internal class VerificateurDeMain
-    {
-    }
+    Coeur,
+    Pique,
+    Carreau,
+    treffle
 }
