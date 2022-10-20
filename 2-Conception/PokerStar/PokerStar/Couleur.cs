@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-enum Couleur
+public enum Couleur
 {
     Coeur,
     Pique,

@@ -6,14 +6,26 @@ using System.Threading.Tasks;
 
 namespace PokerStar
 {
-    internal class Carte
+    public class Carte
     {
-        string sorte;
-        Valeur valeur;
+        bool visible;
+        public Couleur couleur;
+        public int valeur;
 
-        Carte(string sorte_p, Valeur valeur_p){
-            sorte = sorte_p;
+        public Carte(Couleur couleur_p, int valeur_p){
+            couleur = couleur_p;
             valeur = valeur_p;
+            visible = false;
+        }
+
+        public void retourner()
+        {
+            visible = true;
+        }
+
+        public int Comparer(Carte carte)
+        {
+            return carte.valeur;
         }
 
     }
