@@ -13,6 +13,7 @@ namespace PokerStar
             
         public MainJoueur(Carte[] carteDonner)
         {
+            
             laMain = carteDonner;
         }
         public int Comparer(MainJoueur lautreMAin)
