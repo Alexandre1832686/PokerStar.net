@@ -46,6 +46,7 @@
     <Compile Include="Carte.cs" />
     <Compile Include="Couleur.cs" />
     <Compile Include="paquet.cs" />
+    <Compile Include="Tour.cs" />
     <Compile Include="Valeur.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="MainJoueur.cs" />

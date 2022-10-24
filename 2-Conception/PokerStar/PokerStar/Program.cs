@@ -10,18 +10,20 @@ namespace PokerStar
     {
         static void Main(string[] args)
         {
-            /*paquet monPaquet = new paquet();
+            paquet monPaquet = new paquet();
             monPaquet.Brasser();
 
-            for (int i = 0; i < 10; i++)
+            Joueur[] joueurs = new Joueur[4];
+
+            for(int i = 0; i < 4; i++)
             {
-                Carte macarte = monPaquet.GetTopCarte();
-                Console.WriteLine(macarte.valeur + " " + macarte.couleur);
+                Joueur j = new Joueur("alex"+rand.Next(0,200), "al");
+                joueurs[i] = j;
             }
+            
+            partie p = new partie(joueurs);
 
-            Console.ReadLine();*/
-
-            Joueur test = new Joueur("dfgsfd", "sdfg");
+            p.AfficherJeu();
             test.Miser(200);
             test.Miser(500);
 
