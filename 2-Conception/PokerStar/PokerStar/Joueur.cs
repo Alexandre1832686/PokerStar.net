@@ -9,7 +9,7 @@ namespace PokerStar
 {
 
 
-    internal class Joueur
+    public class Joueur
     {
         //déclaration des variables
         string nom;
@@ -30,6 +30,36 @@ namespace PokerStar
         {
             if (montant <= argent)
             {
+                bool verif = false;
+                int reponse;
+                do {
+                    Console.WriteLine("All in de " + argent + "?");
+                    Console.WriteLine("1- Oui");
+                    Console.WriteLine("2- Non");
+                    verif = int.TryParse(Console.ReadLine(), out reponse);
+                } while (verif==false || reponse == 1 && reponse == 2);
+
+                if (reponse == 1)
+                {
+                    return argent;
+                }
+
+                else
+                {
+                    do
+                    {
+                        Console.WriteLine("Voulez-vous : ");
+                        Console.WriteLine("1- miser une plus petite somme ");
+                        Console.WriteLine("2- Vous couchez ");
+                        verif = int.TryParse(Console.ReadLine(), out reponse);
+                    } while (verif == false || reponse == 1);
+                    
+                }
+
+                if (reponse == 1)
+                {
+
+                }
                 return montant;
             }
             else
