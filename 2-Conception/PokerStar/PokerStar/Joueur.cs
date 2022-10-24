@@ -15,6 +15,7 @@ namespace PokerStar
         string nom;
         string pseudo;
         int argent;
+        int bet;
         bool actif;
         //Mainjoueur mainJoueur;
 
@@ -28,6 +29,7 @@ namespace PokerStar
 
         public int Miser(int montant)
         {
+            bet += montant;
             if (montant <= argent)
             {
                 bool verif = false;
@@ -81,6 +83,21 @@ namespace PokerStar
         public void ResetMain()
         {
             //mainJoueur = new MainJoueur
+        }
+
+        public string getNom()
+        {
+            return nom;
+        }
+
+        public int getBet()
+        {
+            return bet;
+        }
+
+        public void ResetBet()
+        {
+             bet = 0;
         }
     }
 }
