@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerStar", "PokerStar\PokerStar.csproj", "{A30709C1-6CC3-41EB-BF7A-A6E811D86C9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPoker", "TestPoker\TestPoker.csproj", "{2722B95D-0BE2-41D3-B5E0-D834E86FC6AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A30709C1-6CC3-41EB-BF7A-A6E811D86C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30709C1-6CC3-41EB-BF7A-A6E811D86C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30709C1-6CC3-41EB-BF7A-A6E811D86C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2722B95D-0BE2-41D3-B5E0-D834E86FC6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2722B95D-0BE2-41D3-B5E0-D834E86FC6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2722B95D-0BE2-41D3-B5E0-D834E86FC6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2722B95D-0BE2-41D3-B5E0-D834E86FC6AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
