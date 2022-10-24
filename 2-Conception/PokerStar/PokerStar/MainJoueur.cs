@@ -10,7 +10,7 @@ namespace PokerStar
     {
         Carte[] laMain = new Carte[2];
         int force;
-            
+        Random rnd = new Random();
         public MainJoueur(Carte[] carteDonner)
         {
             
@@ -18,11 +18,14 @@ namespace PokerStar
         }
         public int Comparer(MainJoueur lautreMAin)
         {
-            return 0;
+          
+            force = rnd.Next(0, 1000);
+            return force;
         }
         public void CalculerForce()
         {
-               
+            
+               force= rnd.Next(0,1000);
         }
     }
    
