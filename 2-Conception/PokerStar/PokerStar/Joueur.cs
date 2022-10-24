@@ -30,7 +30,7 @@ namespace PokerStar
         public int Miser(int montant)
         {
             bet += montant;
-            if (montant <= argent)
+            if (montant >= argent)
             {
                 bool verif = false;
                 int reponse;
@@ -39,7 +39,7 @@ namespace PokerStar
                     Console.WriteLine("1- Oui");
                     Console.WriteLine("2- Non");
                     verif = int.TryParse(Console.ReadLine(), out reponse);
-                } while (verif==false || reponse == 1 && reponse == 2);
+                } while (verif==false && reponse != 1 || reponse != 2);
 
                 if (reponse == 1)
                 {
@@ -54,8 +54,24 @@ namespace PokerStar
                         Console.WriteLine("1- miser une plus petite somme ");
                         Console.WriteLine("2- Vous couchez ");
                         verif = int.TryParse(Console.ReadLine(), out reponse);
-                    } while (verif == false || reponse == 1);
-                    
+                    } while (verif == false && reponse == 1 || reponse == 2);
+
+                    if (reponse == 1)
+                    {
+                        do
+                        {
+                            Console.WriteLine("Combien voulez-vous miser (reste " + argent + "$)");
+                            verif = int.TryParse(Console.ReadLine(), out reponse);
+                        } while (verif == false && reponse > 0);
+
+                        Miser(reponse);
+                    }
+
+                    else
+                    {
+                        Coucher();
+                        return 0;
+                    }
                 }
 
                 if (reponse == 1)
@@ -98,6 +114,11 @@ namespace PokerStar
         public void ResetBet()
         {
              bet = 0;
+        }
+
+        public int getArgent()
+        {
+            return argent;
         }
     }
 }
