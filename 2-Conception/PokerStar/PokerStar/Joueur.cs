@@ -17,7 +17,7 @@ namespace PokerStar
         int argent;
         int bet;
         bool actif;
-        MainJoueur mainJoueur;
+        MainJoueur main;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
@@ -25,6 +25,7 @@ namespace PokerStar
             this.pseudo = pseudo;
             argent = 300;
             actif = false;
+            ResetMain();
             }
 
         /// <summary>
@@ -107,6 +108,7 @@ namespace PokerStar
         {
             actif= true;
             main = new MainJoueur();
+
         }
 
         public string GetNom()

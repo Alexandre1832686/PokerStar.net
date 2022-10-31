@@ -8,13 +8,13 @@ namespace PokerStar
 {
     internal class partie
     {
-
+        Joueur[] joueurs;
         public partie(Joueur[] j)
         {
-            Joueurs = j;
+            joueurs = j;
         }
 
-        Joueur[] Joueurs = new Joueur[4];
+        
         int indJoueurCourrant=0;
         int total = 5;
         public void AfficherJeu()
@@ -32,31 +32,31 @@ namespace PokerStar
 
 
             Console.WriteLine("______________________________________________");
-            Console.WriteLine("                   " + Joueurs[b].getNom() + "(" + Joueurs[b].getArgent() + " $)");
+            Console.WriteLine("                   " + joueurs[b].GetNom() + "(" + joueurs[b].GetArgent() + " $)");
             Console.WriteLine("                    ____   ____");
             Console.WriteLine("                   |    | |    |");
             Console.WriteLine("                   |    | |    |");
             Console.WriteLine("                   |    | |    |");
             Console.WriteLine("                    ----   ----");
-            Console.WriteLine("                        " + Joueurs[b].getBet() + " $");
+            Console.WriteLine("                        " + joueurs[b].GetBet() + " $");
             Console.WriteLine("");
             Console.WriteLine(""); 
-            Console.WriteLine("" + Joueurs[a].getNom() + "(" + Joueurs[a].getArgent() + " $)" + "                     " + Joueurs[c].getNom() + "(" + Joueurs[c].getArgent() + " $)");
+            Console.WriteLine("" + joueurs[a].GetNom() + "(" + joueurs[a].GetArgent() + " $)" + "                     " + joueurs[c].GetNom() + "(" + joueurs[c].GetArgent() + " $)");
             Console.WriteLine(" ____   ____                        ____   ____");
             Console.WriteLine("|    | |    |                      |    | |    |");
             Console.WriteLine("|    | |    |     Total : "+total+" $      |    | |    |");
             Console.WriteLine("|    | |    |                      |    | |    |");
             Console.WriteLine(" ----   ----                        ----   ----");
-            Console.WriteLine("     "+Joueurs[a].getBet() + " $                               " + Joueurs[c].getBet() + " $");
+            Console.WriteLine("     "+joueurs[a].GetBet() + " $                               " + joueurs[c].GetBet() + " $");
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.WriteLine("                   " + Joueurs[indJoueurCourrant].getNom() +"("+ Joueurs[indJoueurCourrant].getArgent()+" $)");
+            Console.WriteLine("                   " + joueurs[indJoueurCourrant].GetNom() +"("+ joueurs[indJoueurCourrant].GetArgent()+" $)");
             Console.WriteLine("                    ____   ____");
             Console.WriteLine("                   |    | |    |");
-            Console.WriteLine("                   |  " + Joueurs[indJoueurCourrant].getMain().GetCarte(0).valeur + " | |  " + Joueurs[indJoueurCourrant].GetMain().GetCarte(1).valeur +" |");
-            Console.WriteLine("                   |    | |    |");
+            Console.WriteLine("                   |  " + joueurs[indJoueurCourrant].GetMain().GetCarte(0).valeur + " | |  " + joueurs[indJoueurCourrant].GetMain().GetCarte(1).valeur +" |");
+            Console.WriteLine("                   |  " + joueurs[indJoueurCourrant].GetMain().GetCarte(0).couleur + " | |  " + joueurs[indJoueurCourrant].GetMain().GetCarte(1).couleur +" |");
             Console.WriteLine("                    ----   ----");
-            Console.WriteLine("                        " + Joueurs[indJoueurCourrant].getBet() + " $");
+            Console.WriteLine("                        " + joueurs[indJoueurCourrant].GetBet() + " $");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("---------------------------------------------------------------------");
