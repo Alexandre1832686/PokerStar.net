@@ -17,7 +17,7 @@ namespace PokerStar
         int argent;
         int bet;
         bool actif;
-        //Mainjoueur mainJoueur;
+        MainJoueur mainJoueur;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){

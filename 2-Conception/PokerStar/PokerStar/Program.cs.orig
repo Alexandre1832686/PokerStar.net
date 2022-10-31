@@ -10,11 +10,12 @@ namespace PokerStar
     {
         static void Main(string[] args)
         {
-            paquet.InstantierPaquet();
-            paquet.Brasser();
+<<<<<<< HEAD
+             paquet monPaquet = new paquet();
+             monPaquet.Brasser();
 
              Joueur[] joueurs = new Joueur[4];
-            Random rand = new Random();
+
              for(int i = 0; i < 4; i++)
              {
                  Joueur j = new Joueur("alex"+rand.Next(0,200), "al");
@@ -23,19 +24,36 @@ namespace PokerStar
 
             // partie p = new partie(joueurs);
 
-            /*p.AfficherJeu();
+            //Joueur test = new Joueur("fdsaf", "dsfa");
+=======
+            paquet.InstantierPaquet();
+            paquet.Brasser();
+
+            Joueur[] joueurs = new Joueur[4];
+            Random rand = new Random();
+            for(int i = 0; i < 4; i++)
+            {
+                Joueur j = new Joueur("alex"+rand.Next(0,200), "al");
+                joueurs[i] = j;
+            }
+>>>>>>> fef8c9c2b660a5025e9f06452c7c3b18451cdc61
             
             //test.Miser(200);
             //test.Miser(500);
+
+<<<<<<< HEAD
+            //Console.WriteLine(test.getBet());
+
+            //Console.ReadKey();
+=======
+            /*p.AfficherJeu();
             test.Miser(200);
             test.Miser(500);
 
             Console.WriteLine(test.getBet());
 
-
             Console.ReadKey();*/
-
-            //Console.ReadKey();
+>>>>>>> fef8c9c2b660a5025e9f06452c7c3b18451cdc61
 
 
         }
