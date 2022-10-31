@@ -41,12 +41,16 @@ namespace PokerStar
                 carteCommune[i].retourner();
             }
         }
-        public void ResetTour()
+        public void ResetTour(Joueur[] lesJoueur)
         {
-            // carteCommune= Paquet.Distribuer(t: Tour)
+            
+
+
         }
         public void AugmenterEtatTour()
-        {etatTour++;}
+        {
+            this.etatTour++;
+        }
 
     }
 }

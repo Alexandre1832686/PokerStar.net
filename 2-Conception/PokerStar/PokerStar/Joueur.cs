@@ -17,7 +17,7 @@ namespace PokerStar
         int argent;
         int bet;
         bool actif;
-        //Mainjoueur mainJoueur;
+        MainJoueur main = new MainJoueur();
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
@@ -27,9 +27,15 @@ namespace PokerStar
             actif = false;
             }
 
+        /// <summary>
+        /// s'occupe de miser et de calculer la somme total que je joueur à miser 
+        /// </summary>
+        /// <param name="montant"></param>
+        /// <returns></returns>
         public int Miser(int montant)
         {
-            bet += montant;
+            //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
+            //et si c'est correct 
             if (montant >= argent)
             {
                 bool verif = false;
@@ -39,11 +45,11 @@ namespace PokerStar
                     Console.WriteLine("1- Oui");
                     Console.WriteLine("2- Non");
                     verif = int.TryParse(Console.ReadLine(), out reponse);
-                } while (verif==false && reponse > 3 || reponse < 0);
+                } while (verif==false || (reponse != 1 && reponse != 2));
 
                 if (reponse == 1)
                 {
-                    bet = argent;
+                    bet += argent;
                     return argent;
                 }
 
@@ -55,7 +61,7 @@ namespace PokerStar
                         Console.WriteLine("1- miser une plus petite somme ");
                         Console.WriteLine("2- Vous couchez ");
                         verif = int.TryParse(Console.ReadLine(), out reponse);
-                    } while (verif == false && reponse == 1 || reponse == 2);
+                    } while (verif == false || (reponse != 1 && reponse != 2));
 
                     if (reponse == 1)
                     {
@@ -81,6 +87,7 @@ namespace PokerStar
             else
             {
                 argent -= montant;
+                bet += montant;
                 return montant;
             }
         }
@@ -97,7 +104,8 @@ namespace PokerStar
 
         public void ResetMain()
         {
-            //mainJoueur = new MainJoueur
+            actif= true;
+            main = new MainJoueur();
         }
 
         public string getNom()
@@ -118,6 +126,16 @@ namespace PokerStar
         public int getArgent()
         {
             return argent;
+        }
+
+        public MainJoueur getMain()
+        {
+            return main;
+        }
+
+        public bool getEtat()
+        {
+            return actif;
         }
     }
 }

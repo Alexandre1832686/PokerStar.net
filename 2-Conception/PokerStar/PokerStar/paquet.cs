@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace PokerStar
 {
-    public class paquet
+    public static class paquet
     {
-        Carte[] paquetDeCarte = new Carte[52];
 
-        public paquet()
-        {
-           paquetDeCarte = InstantierPaquet();
-        }
-
-
-        public void Brasser()
+       static Carte[] paquetDeCarte = new Carte[52];
+        public static void Brasser()
         {
             Random rand = new Random();
 
@@ -29,7 +23,7 @@ namespace PokerStar
             }
         }
 
-        public Carte[] InstantierPaquet()
+        public static Carte[] InstantierPaquet()
         {
             List<Carte> paquet = new List<Carte>();
 
@@ -57,7 +51,7 @@ namespace PokerStar
             return paquet.ToArray();
         }
 
-        public Carte GetTopCarte()
+        public static Carte GetTopCarte()
         {
             for(int i = 51; i>=0; i--)
             {
@@ -70,5 +64,6 @@ namespace PokerStar
             }
             return null;
         }
+        
     }
 }

@@ -13,12 +13,15 @@ namespace PokerStar
         Random rnd = new Random();
         public MainJoueur()
         {
+<<<<<<< HEAD
+            laMain = carteDonner;
+=======
             for(int i=0;i<laMain.Length;i++)
             {
                 laMain[i] = paquet.GetTopCarte();
             }
-            
-            laMain = carteDonner;
+          
+>>>>>>> cc2d3af99383b9699f7174c4c99ed1c1726464bd
         }
         public int Comparer(MainJoueur lautreMAin)
         {
