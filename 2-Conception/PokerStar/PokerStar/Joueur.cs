@@ -39,10 +39,11 @@ namespace PokerStar
                     Console.WriteLine("1- Oui");
                     Console.WriteLine("2- Non");
                     verif = int.TryParse(Console.ReadLine(), out reponse);
-                } while (verif==false && reponse != 1 || reponse != 2);
+                } while (verif==false && reponse > 3 || reponse < 0);
 
                 if (reponse == 1)
                 {
+                    bet = argent;
                     return argent;
                 }
 
@@ -64,7 +65,8 @@ namespace PokerStar
                             verif = int.TryParse(Console.ReadLine(), out reponse);
                         } while (verif == false && reponse > 0);
 
-                        Miser(reponse);
+                        return Miser(reponse);
+
                     }
 
                     else
@@ -74,15 +76,12 @@ namespace PokerStar
                     }
                 }
 
-                if (reponse == 1)
-                {
-
-                }
-                return montant;
+                
             }
             else
             {
-                return argent;
+                argent -= montant;
+                return montant;
             }
         }
 

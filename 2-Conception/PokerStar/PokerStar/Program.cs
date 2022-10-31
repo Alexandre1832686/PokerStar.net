@@ -10,7 +10,8 @@ namespace PokerStar
     {
         static void Main(string[] args)
         {
-            Random rand = new Random(); 
+            paquet monPaquet = new paquet();
+            monPaquet.Brasser();
 
             Joueur[] joueurs = new Joueur[4];
 
@@ -23,7 +24,13 @@ namespace PokerStar
             partie p = new partie(joueurs);
 
             p.AfficherJeu();
-            Console.ReadLine();
+            test.Miser(200);
+            test.Miser(500);
+
+            Console.WriteLine(test.getBet());
+
+            Console.ReadKey();
+
 
         }
     }
