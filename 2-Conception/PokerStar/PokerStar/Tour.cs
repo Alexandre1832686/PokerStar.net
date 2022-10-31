@@ -43,10 +43,13 @@ namespace PokerStar
         }
         public void ResetTour()
         {
-            // carteCommune= Paquet.Distribuer(t: Tour)
+            
+                
         }
         public void AugmenterEtatTour()
-        {etatTour++;}
+        {
+            this.etatTour++;
+        }
 
     }
 }
