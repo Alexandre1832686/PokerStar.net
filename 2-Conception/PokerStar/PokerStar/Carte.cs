@@ -8,7 +8,7 @@ namespace PokerStar
 {
     public class Carte
     {
-        bool visible;
+        bool visible { get; set; }
         public Couleur couleur;
         public int valeur;
 
@@ -27,6 +27,7 @@ namespace PokerStar
         {
             return carte.valeur;
         }
-
+                
+        
     }
 }
