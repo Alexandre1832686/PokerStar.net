@@ -11,10 +11,13 @@ namespace PokerStar
         Carte[] laMain = new Carte[2];
         int force;
         Random rnd = new Random();
-        public MainJoueur(Carte[] carteDonner)
+        public MainJoueur()
         {
-            
-            laMain = carteDonner;
+            for(int i=0;i<laMain.Length;i++)
+            {
+                laMain[i] = paquet.GetTopCarte();
+            }
+          
         }
         public int Comparer(MainJoueur lautreMAin)
         {
