@@ -43,9 +43,15 @@ namespace PokerStar
         }
         public void ResetTour(Joueur[] lesJoueur)
         {
-            
-
-
+            for(int i=0;i<lesJoueur.Length;i++)
+            {
+                lesJoueur[i].ResetMain();
+            }
+            for(int i=0;i<carteCommune.Length;i++)
+            {
+                carteCommune[i];
+            }
+            paquet.Brasser();
         }
         public void AugmenterEtatTour()
         {

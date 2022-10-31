@@ -17,17 +17,14 @@ namespace PokerStar
             {
                 laMain[i] = paquet.GetTopCarte();
             }
-          
         }
         public int Comparer(MainJoueur lautreMAin)
         {
-          
             force = rnd.Next(0, 1000);
             return force;
         }
         public void CalculerForce()
         {
-            
                force= rnd.Next(0,1000);
         }
     }

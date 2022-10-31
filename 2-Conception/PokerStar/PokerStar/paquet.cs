@@ -13,13 +13,14 @@ namespace PokerStar
         public static void Brasser()
         {
             Random rand = new Random();
-
+            paquet.InstantierPaquet();
             for (int n = paquetDeCarte.Length - 1; n > 0; --n)
             {
                 int k = rand.Next(n + 1);
                 Carte temp = paquetDeCarte[n];
                 paquetDeCarte[n] = paquetDeCarte[k];
                 paquetDeCarte[k] = temp;
+
             }
         }
 
@@ -47,7 +48,7 @@ namespace PokerStar
                 Carte carte = new Carte(Couleur.Carreau, i + 1);
                 paquet.Add(carte);
             }
-
+            
             return paquet.ToArray();
         }
 
