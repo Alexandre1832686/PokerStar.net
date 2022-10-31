@@ -41,10 +41,11 @@ namespace PokerStar
                 carteCommune[i].retourner();
             }
         }
-        public void ResetTour()
+        public void ResetTour(Joueur[] lesJoueur)
         {
             
-                
+
+
         }
         public void AugmenterEtatTour()
         {
