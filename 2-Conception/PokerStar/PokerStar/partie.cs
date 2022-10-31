@@ -53,7 +53,7 @@ namespace PokerStar
             Console.WriteLine("                   " + Joueurs[indJoueurCourrant].getNom() +"("+ Joueurs[indJoueurCourrant].getArgent()+" $)");
             Console.WriteLine("                    ____   ____");
             Console.WriteLine("                   |    | |    |");
-            Console.WriteLine("                   |    | |    |");
+            Console.WriteLine("                   |  " + Joueurs[indJoueurCourrant].GetMain().GetCarte(0).valeur + "  | |  " + Joueurs[indJoueurCourrant].GetMain().GetCarte(1).valeur +"  |");
             Console.WriteLine("                   |    | |    |");
             Console.WriteLine("                    ----   ----");
             Console.WriteLine("                        " + Joueurs[indJoueurCourrant].getBet() + " $");

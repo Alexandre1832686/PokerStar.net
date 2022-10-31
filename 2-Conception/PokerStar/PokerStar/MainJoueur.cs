@@ -13,7 +13,6 @@ namespace PokerStar
         Random rnd = new Random();
         public MainJoueur(Carte[] carteDonner)
         {
-            
             laMain = carteDonner;
         }
         public int Comparer(MainJoueur lautreMAin)
@@ -26,6 +25,16 @@ namespace PokerStar
         {
             
                force= rnd.Next(0,1000);
+        }
+        public Carte GetCarte(int ind)
+        {
+            Carte carte = laMain[0];
+            if (ind < laMain.Length && ind >=0)
+            {
+                carte = laMain[ind];
+            }
+           
+            return carte;
         }
     }
    
