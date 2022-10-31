@@ -104,7 +104,8 @@ namespace PokerStar
 
         public void ResetMain()
         {
-            //mainJoueur = new MainJoueur
+            actif= true;
+            main = new MainJoueur();
         }
 
         public string getNom()
@@ -127,9 +128,14 @@ namespace PokerStar
             return argent;
         }
 
-        public MainJoueur[] getMain()
+        public MainJoueur getMain()
         {
-            retrun ma
+            return main;
+        }
+
+        public bool getEtat()
+        {
+            return actif;
         }
     }
 }

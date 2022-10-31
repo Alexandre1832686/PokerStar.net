@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PokerStar
 {
-    internal class MainJoueur
-    {
+     public class MainJoueur
+     {
         Carte[] laMain = new Carte[2];
         int force;
         Random rnd = new Random();
