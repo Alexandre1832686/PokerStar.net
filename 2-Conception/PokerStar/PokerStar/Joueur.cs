@@ -108,12 +108,12 @@ namespace PokerStar
             main = new MainJoueur();
         }
 
-        public string getNom()
+        public string GetNom()
         {
             return nom;
         }
 
-        public int getBet()
+        public int GetBet()
         {
             return bet;
         }
@@ -123,17 +123,17 @@ namespace PokerStar
              bet = 0;
         }
 
-        public int getArgent()
+        public int GetArgent()
         {
             return argent;
         }
 
-        public MainJoueur getMain()
+        public MainJoueur GetMain()
         {
             return main;
         }
 
-        public bool getEtat()
+        public bool GetEtat()
         {
             return actif;
         }
