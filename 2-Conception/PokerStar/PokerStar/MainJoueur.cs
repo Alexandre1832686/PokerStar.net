@@ -18,7 +18,7 @@ namespace PokerStar
                 laMain[i] = paquet.GetTopCarte();
             }
             
-            laMain = carteDonner;
+            
         }
         public int Comparer(MainJoueur lautreMAin)
         {
