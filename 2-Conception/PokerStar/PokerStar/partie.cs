@@ -204,7 +204,10 @@ namespace PokerStar
             Console.WriteLine("|     1-Call     |     2-Raise     |     3-fold     |");
             Console.WriteLine("---------------------------------------------------------------------");
 
-
+            for(int i =0;i<5;i++)
+            {
+                AfficherCartePub(i);
+            }
         }
 
         public void SelectionAction(Joueur j)
@@ -286,6 +289,22 @@ namespace PokerStar
                 retour = a + " ";
             }
             return retour;
+        }
+
+        void AfficherCartePub(int ind)
+        {
+            int posx = 30;
+            int posy = 5;
+            Console.SetCursorPosition(posx, posy);
+            Console.WriteLine(" ____   ____");
+            Console.SetCursorPosition(posx +10, posy);
+            Console.WriteLine("|    | |    |");
+            Console.SetCursorPosition(posx + 20, posy);
+            Console.WriteLine("|    | |    |");
+            Console.SetCursorPosition(posx + 30, posy);
+            Console.WriteLine("|    | |    |");
+            Console.SetCursorPosition(posx + 40, posy);
+            Console.WriteLine(" ----   ----");
         }
     }
 }
