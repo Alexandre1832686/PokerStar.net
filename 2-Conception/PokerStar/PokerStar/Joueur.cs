@@ -33,8 +33,9 @@ namespace PokerStar
         /// </summary>
         /// <param name="montant"></param>
         /// <returns></returns>
-        public int Miser(int montant)
+        public int Miser()
         {
+            int montant =0;
             bet += montant;
             //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
             //et si c'est correct 
@@ -73,7 +74,7 @@ namespace PokerStar
                             verif = int.TryParse(Console.ReadLine(), out reponse);
                         } while (verif == false && reponse > 0);
 
-                        return Miser(reponse);
+                        return Miser();
 
                     }
 

@@ -13,7 +13,7 @@ namespace PokerStar
             
             paquet.Brasser();
 
-             Joueur[] joueurs = new Joueur[4];
+            Joueur[] joueurs = new Joueur[4];
             Random rand = new Random();
              for(int i = 0; i < 4; i++)
              {
@@ -23,19 +23,22 @@ namespace PokerStar
 
             partie p = new partie(joueurs);
 
-            p.AfficherJeu();
+            bool gameisover = false;
+            while(!gameisover)
+            {
+                p.AfficherJeu();
+                if (joueurs[p.indJoueurCourrant].GetEtat())
+                {
+                    p.SelectionAction(joueurs[p.indJoueurCourrant]);
+                }
+            }
+
             
-            //test.Miser(200);
-            //test.Miser(500);
-            //test.Miser(200);
-            //test.Miser(500);
-
-            //Console.WriteLine(test.getBet());
 
 
-            Console.ReadKey();
+            
 
-            //Console.ReadKey();
+            
 
 
         }
