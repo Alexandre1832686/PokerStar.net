@@ -10,25 +10,27 @@ namespace PokerStar
     internal class partie
     {
         Joueur[] joueurs;
+        Tour tour;
+
 
         public partie(Joueur[] j)
         {
             joueurs = j;
+            tour = new Tour();
+            tour.SetJoueurs(joueurs);
         }
-
         
-        public int indJoueurCourrant=0;
+        public int indJoueurCourrant=-1;
         int total = 0;
         public void AfficherJeu()
         {
-
-            
-
             total = 0;
             foreach(Joueur joueur in joueurs)
             {
                 total += joueur.GetBet();
             }
+            
+
             if(indJoueurCourrant<3)
             {
                 indJoueurCourrant++;
@@ -54,6 +56,11 @@ namespace PokerStar
             {
                 AfficherCartePub(i);
             }
+
+            Console.SetCursorPosition(10, 15);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("        Total : " + total + " $");
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine("______________________________________________");
             Console.WriteLine("                   " + joueurs[b].GetNom() + "(" + joueurs[b].GetArgent() + " $)");
             if (!joueurs[b].GetEtat())
@@ -132,8 +139,7 @@ namespace PokerStar
             }
             Console.Write("|    | |    |");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("        Total : " + total + " $");
+            
 
             if (!joueurs[c].GetEtat())
             {
@@ -144,7 +150,7 @@ namespace PokerStar
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
-            Console.WriteLine("   |    | |    |");
+            Console.WriteLine("                      |    | |    |");
 
             if (!joueurs[a].GetEtat())
             {
@@ -212,7 +218,11 @@ namespace PokerStar
             Console.WriteLine("|     1-Call     |     2-Raise     |     3-fold     |");
             Console.WriteLine("---------------------------------------------------------------------");
 
-            
+            Console.SetCursorPosition(10, 15);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("        Total : " + total + " $");
+            Console.SetCursorPosition(0, 32);
+
         }
 
         public void SelectionAction(Joueur j)
@@ -231,13 +241,21 @@ namespace PokerStar
 
             } while (verif == false);
 
-            switch(choix)
+            List<int> l = new List<int>();
+            foreach(Joueur joueur in joueurs)
             {
+                l.Add(joueur.GetBet());
+            }
+            int betTotalMax = l.Max();
+
+            switch (choix)
+            {
+                
                 case 1:
-                    joueurs[indJoueurCourrant].call(0);
+                    joueurs[indJoueurCourrant].call(betTotalMax - joueurs[indJoueurCourrant].GetBet());
                     break;
                 case 2:
-                    joueurs[indJoueurCourrant].raise(0);
+                    joueurs[indJoueurCourrant].raise(betTotalMax - joueurs[indJoueurCourrant].GetBet() *2);
                     break;
                 case 3:
                     joueurs[indJoueurCourrant].Coucher();
@@ -298,20 +316,48 @@ namespace PokerStar
 
         void AfficherCartePub(int ind)
         {
-            Console.BackgroundColor = ConsoleColor.Green;
-            int posx =60;
-            int posy = 3;
-            Console.SetCursorPosition(posx + 8 * ind, posy);
-            Console.Write(" ____");
-            Console.SetCursorPosition(posx + 8 * ind, posy +1);
-            Console.Write("|    |");
-            Console.SetCursorPosition(posx + 8 * ind, posy + 2);
-            Console.Write("|    |");
-            Console.SetCursorPosition(posx + 8 * ind, posy + 3);
-            Console.Write("|    | ");
-            Console.SetCursorPosition(posx + 8 * ind, posy + 4);
-            Console.Write(" ----");
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            if(GetCartePublic(ind).visible)
+            {
+                int posx = 60;
+                int posy = 3;
+                Console.SetCursorPosition(posx + 8 * ind, posy);
+                Console.Write(" ____");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 1);
+                Console.Write("|    |");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 2);
+                Console.Write("| " + ConvertirValeur(GetCartePublic(ind).valeur) + "  |");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 3);
+                Console.Write("|  " + ConvertirCouleur(GetCartePublic(ind).couleur) + " | ");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 4);
+                Console.Write(" ----");
+            }
+            else
+            {
+                int posx = 60;
+                int posy = 3;
+                Console.SetCursorPosition(posx + 8 * ind, posy);
+                Console.Write(" ____");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 1);
+                Console.Write("|    |");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 2);
+                Console.Write("|    |");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 3);
+                Console.Write("|    | ");
+                Console.SetCursorPosition(posx + 8 * ind, posy + 4);
+                Console.Write(" ----");
+
+                Console.SetCursorPosition(0, 0);
+            }
+            
         }
+        public Carte GetCartePublic(int ind)
+        {
+            return tour.carteCommune[ind];
+        }
+        public void AugmenterEtatTour()
+        {
+            tour.AugmenterEtatTour();
+        }
+
     }
 }

@@ -15,7 +15,7 @@ namespace PokerStar
         string nom;
         string pseudo;
         int argent;
-        static int bet;
+        int bet;
         bool actif;
         MainJoueur main;
 
@@ -37,7 +37,7 @@ namespace PokerStar
         public void Miser(int montant,int montantMinimum)
         {
             
-            bet += montant;
+            
             
 
             //public void Miser(int montant, int montantMinimum)

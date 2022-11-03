@@ -8,7 +8,7 @@ namespace PokerStar
 {
     public class Carte
     {
-        bool visible { get; set; }
+        public bool visible;
         public Couleur couleur;
         public int valeur;
 
