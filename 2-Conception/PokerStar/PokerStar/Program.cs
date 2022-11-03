@@ -10,7 +10,7 @@ namespace PokerStar
     {
         static void Main(string[] args)
         {
-            paquet.InstantierPaquet();
+            
             paquet.Brasser();
 
              Joueur[] joueurs = new Joueur[4];
@@ -21,19 +21,19 @@ namespace PokerStar
                  joueurs[i] = j;
              }
 
-            // partie p = new partie(joueurs);
+            partie p = new partie(joueurs);
 
-            /*p.AfficherJeu();
+            p.AfficherJeu();
             
             //test.Miser(200);
             //test.Miser(500);
-            test.Miser(200);
-            test.Miser(500);
+            //test.Miser(200);
+            //test.Miser(500);
 
-            Console.WriteLine(test.getBet());
+            //Console.WriteLine(test.getBet());
 
 
-            Console.ReadKey();*/
+            Console.ReadKey();
 
             //Console.ReadKey();
 

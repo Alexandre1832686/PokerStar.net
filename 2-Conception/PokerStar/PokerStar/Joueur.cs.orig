@@ -17,7 +17,7 @@ namespace PokerStar
         int argent;
         int bet;
         bool actif;
-        MainJoueur main;
+        MainJoueur mainJoueur;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
@@ -25,19 +25,11 @@ namespace PokerStar
             this.pseudo = pseudo;
             argent = 300;
             actif = false;
-            ResetMain();
             }
 
-        /// <summary>
-        /// s'occupe de miser et de calculer la somme total que je joueur à miser 
-        /// </summary>
-        /// <param name="montant"></param>
-        /// <returns></returns>
         public int Miser(int montant)
         {
             bet += montant;
-            //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
-            //et si c'est correct 
             if (montant >= argent)
             {
                 bool verif = false;
@@ -89,7 +81,6 @@ namespace PokerStar
             else
             {
                 argent -= montant;
-                bet += montant;
                 return montant;
             }
         }
@@ -106,9 +97,7 @@ namespace PokerStar
 
         public void ResetMain()
         {
-            actif= true;
-            main = new MainJoueur();
-
+            //mainJoueur = new MainJoueur
         }
 
         public string GetNom()
@@ -130,7 +119,7 @@ namespace PokerStar
         {
             return argent;
         }
-
+<<<<<<< HEAD
 
         public MainJoueur GetMain()
         {
@@ -141,5 +130,7 @@ namespace PokerStar
         {
             return actif;
         }
+=======
+>>>>>>> dfd10c1a4d7238f12d5b7af43de5405e6cc72fa8
     }
 }

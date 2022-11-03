@@ -9,12 +9,12 @@ namespace PokerStar
     public static class paquet
     {
 
-       static Carte[] paquetDeCarte = new Carte[52];
+       static List<Carte> paquetDeCarte = new List<Carte>();
         public static void Brasser()
         {
             Random rand = new Random();
             paquet.InstantierPaquet();
-            for (int n = paquetDeCarte.Length - 1; n > 0; --n)
+            for (int n = paquetDeCarte.Count - 1; n > 0; --n)
             {
                 int k = rand.Next(n + 1);
                 Carte temp = paquetDeCarte[n];
@@ -24,32 +24,32 @@ namespace PokerStar
             }
         }
 
-        public static Carte[] InstantierPaquet()
+        public static List<Carte> InstantierPaquet()
         {
-            List<Carte> paquet = new List<Carte>();
+            
 
             for (int i = 0; i < 13; i++)
             {
                 Carte carte = new Carte(Couleur.Coeur, i +1);
-                paquet.Add(carte);
+                paquetDeCarte.Add(carte);
             }
             for (int i = 0; i < 13; i++)
             {
                 Carte carte = new Carte(Couleur.Pique, i + 1);
-                paquet.Add(carte);
+                paquetDeCarte.Add(carte);
             }
             for (int i = 0; i < 13; i++)
             {
                 Carte carte = new Carte(Couleur.treffle, i + 1);
-                paquet.Add(carte);
+                paquetDeCarte.Add(carte);
             }
             for (int i = 0; i < 13; i++)
             {
                 Carte carte = new Carte(Couleur.Carreau, i + 1);
-                paquet.Add(carte);
+                paquetDeCarte.Add(carte);
             }
             
-            return paquet.ToArray();
+            return paquetDeCarte;
         }
 
         public static Carte GetTopCarte()
