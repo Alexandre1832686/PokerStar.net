@@ -49,7 +49,7 @@ namespace PokerStar
             }
             for(int i=0;i<carteCommune.Length;i++)
             {
-                carteCommune[i];
+                //carteCommune[i];
             }
             paquet.Brasser();
         }
