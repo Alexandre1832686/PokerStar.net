@@ -15,7 +15,7 @@ namespace PokerStar
         string nom;
         string pseudo;
         int argent;
-        int bet;
+        static int bet;
         bool actif;
         MainJoueur main;
 
@@ -33,28 +33,40 @@ namespace PokerStar
         /// </summary>
         /// <param name="montant"></param>
         /// <returns></returns>
-        public int Miser(int montant)
+
+        public void Miser(int montant,int montantMinimum)
         {
+            
             bet += montant;
+            
+
+            //public void Miser(int montant, int montantMinimum)
+            //{
+
+            bool verif = false;
+            int reponse;
+
             //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
             //et si c'est correct 
             if (montant >= argent)
             {
-                bool verif = false;
-                int reponse;
-                do {
-                    Console.WriteLine("All in de " + argent + "?");
-                    Console.WriteLine("1- Oui");
-                    Console.WriteLine("2- Non");
+                allIn(montantMinimum);
+            }
+            else if (montant < montantMinimum)
+            {
+                Console.WriteLine("mise invalide, pour que la mise soit valide miser le double de la somme déja miser (minimum "+montantMinimum+")");
+                do
+                {
+                    Console.WriteLine("Voulez-vous : ");
+                    Console.WriteLine("1- miser une autre somme ");
+                    Console.WriteLine("2- Vous couchez ");
                     verif = int.TryParse(Console.ReadLine(), out reponse);
-                } while (verif==false && reponse > 3 || reponse < 0);
+                } while (verif == false && reponse == 1 || reponse == 2);
 
                 if (reponse == 1)
                 {
-                    bet = argent;
-                    return argent;
+                    raise(montantMinimum / 2);
                 }
-
                 else
                 {
                     do
@@ -73,24 +85,18 @@ namespace PokerStar
                             verif = int.TryParse(Console.ReadLine(), out reponse);
                         } while (verif == false && reponse > 0);
 
-                        return Miser(reponse);
-
                     }
-
                     else
                     {
                         Coucher();
-                        return 0;
+                        
                     }
                 }
-
-                
             }
             else
             {
                 argent -= montant;
                 bet += montant;
-                return montant;
             }
         }
 
@@ -140,6 +146,73 @@ namespace PokerStar
         public bool GetEtat()
         {
             return actif;
+        }
+
+        public void raise(int montantBase)
+        {
+            bool verif = false;
+            int mise;
+            do {
+                Console.WriteLine("Combien voulez-vous miser (reste (" + argent + "$) minimum (" + (2 * montantBase) + "$)): ");
+                verif = Int32.TryParse(Console.ReadLine(),out mise);
+            } while(verif == false);
+           
+            Miser(mise,(2*montantBase));
+        }
+
+        public void call(int montantBase)
+        {
+            bool verif = false;
+            string reponse;
+            if (argent <= montantBase)
+            {
+                allIn(montantBase);
+            }
+            else
+            {
+                Miser(montantBase, montantBase);
+            }
+
+            
+        }
+        public void allIn(int montantMinimum)
+        {
+            bool verif;
+            int reponse;
+            do
+            {
+                Console.WriteLine("All in de " + argent + "?");
+                Console.WriteLine("1- Oui");
+                Console.WriteLine("2- Non");
+                verif = int.TryParse(Console.ReadLine(), out reponse);
+            } while (verif == false && reponse > 3 || reponse < 0);
+
+            if (reponse == 1)
+            {
+                bet = argent;
+            }
+
+            else
+            {
+                do
+                {
+                    Console.WriteLine("Voulez-vous : ");
+                    Console.WriteLine("1- miser une autre somme ");
+                    Console.WriteLine("2- Vous couchez ");
+                    verif = int.TryParse(Console.ReadLine(), out reponse);
+                } while (verif == false && reponse == 1 || reponse == 2);
+
+                if (reponse == 1)
+                {
+                    raise(montantMinimum / 2);
+
+                }
+
+                else
+                {
+                    Coucher();
+                }
+            }
         }
     }
 }
