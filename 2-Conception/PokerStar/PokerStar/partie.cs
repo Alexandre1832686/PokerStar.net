@@ -10,6 +10,7 @@ namespace PokerStar
     internal class partie
     {
         Joueur[] joueurs;
+
         public partie(Joueur[] j)
         {
             joueurs = j;
@@ -20,6 +21,9 @@ namespace PokerStar
         int total = 0;
         public void AfficherJeu()
         {
+
+            
+
             total = 0;
             foreach(Joueur joueur in joueurs)
             {
@@ -46,6 +50,10 @@ namespace PokerStar
             }
 
             Console.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                AfficherCartePub(i);
+            }
             Console.WriteLine("______________________________________________");
             Console.WriteLine("                   " + joueurs[b].GetNom() + "(" + joueurs[b].GetArgent() + " $)");
             if (!joueurs[b].GetEtat())
@@ -204,10 +212,7 @@ namespace PokerStar
             Console.WriteLine("|     1-Call     |     2-Raise     |     3-fold     |");
             Console.WriteLine("---------------------------------------------------------------------");
 
-            for(int i =0;i<5;i++)
-            {
-                AfficherCartePub(i);
-            }
+            
         }
 
         public void SelectionAction(Joueur j)
@@ -229,10 +234,10 @@ namespace PokerStar
             switch(choix)
             {
                 case 1:
-                    //joueurs[indJoueurCourrant].Call();
+                    joueurs[indJoueurCourrant].call(0);
                     break;
                 case 2:
-                    joueurs[indJoueurCourrant].Miser();
+                    joueurs[indJoueurCourrant].raise(0);
                     break;
                 case 3:
                     joueurs[indJoueurCourrant].Coucher();
@@ -293,18 +298,20 @@ namespace PokerStar
 
         void AfficherCartePub(int ind)
         {
-            int posx = 30;
-            int posy = 5;
-            Console.SetCursorPosition(posx, posy);
-            Console.WriteLine(" ____   ____");
-            Console.SetCursorPosition(posx +10, posy);
-            Console.WriteLine("|    | |    |");
-            Console.SetCursorPosition(posx + 20, posy);
-            Console.WriteLine("|    | |    |");
-            Console.SetCursorPosition(posx + 30, posy);
-            Console.WriteLine("|    | |    |");
-            Console.SetCursorPosition(posx + 40, posy);
-            Console.WriteLine(" ----   ----");
+            Console.BackgroundColor = ConsoleColor.Green;
+            int posx =60;
+            int posy = 3;
+            Console.SetCursorPosition(posx + 8 * ind, posy);
+            Console.Write(" ____");
+            Console.SetCursorPosition(posx + 8 * ind, posy +1);
+            Console.Write("|    |");
+            Console.SetCursorPosition(posx + 8 * ind, posy + 2);
+            Console.Write("|    |");
+            Console.SetCursorPosition(posx + 8 * ind, posy + 3);
+            Console.Write("|    | ");
+            Console.SetCursorPosition(posx + 8 * ind, posy + 4);
+            Console.Write(" ----");
+            Console.BackgroundColor = ConsoleColor.Magenta;
         }
     }
 }

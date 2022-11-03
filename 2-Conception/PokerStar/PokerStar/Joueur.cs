@@ -34,11 +34,11 @@ namespace PokerStar
         /// <param name="montant"></param>
         /// <returns></returns>
 
-        public void Miser()
+        public void Miser(int montant,int montantMinimum)
         {
-            int montant =0;
+            
             bet += montant;
-            int montantMinimum =0;
+            
 
             //public void Miser(int montant, int montantMinimum)
             //{
@@ -67,8 +67,6 @@ namespace PokerStar
                 {
                     raise(montantMinimum / 2);
                 }
-
-
                 else
                 {
                     do
@@ -87,22 +85,13 @@ namespace PokerStar
                             verif = int.TryParse(Console.ReadLine(), out reponse);
                         } while (verif == false && reponse > 0);
 
-                        return Miser();
-
                     }
-
                     else
                     {
                         Coucher();
-                        return 0;
+                        
                     }
                 }
-
-
-                else 
-                    Coucher();
-
-                
             }
             else
             {
