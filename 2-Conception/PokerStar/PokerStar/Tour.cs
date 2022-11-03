@@ -10,12 +10,12 @@ namespace PokerStar
     {
         Carte[] carteCommune;
         int etatTour=0;
-        Tour()
+        Tour( Carte[] LesCarteCommune)
         {
-            
+            carteCommune = LesCarteCommune;
         }
         /// <summary>
-        /// 
+        /// permet de rendre les carte visible a tous selon le tour 
         /// </summary>
         public void ChangerEtat()
         {
@@ -38,9 +38,13 @@ namespace PokerStar
             }
             for (int i = position; i < inbCarteAtourner; i++)
             {
-                carteCommune[i].retourner();
+                carteCommune[i].retourner(true);
             }
         }
+        /// <summary>
+        /// Permet de resetter les mains et l'état des joueur ainsi que remettre face cacher les carte commune
+        /// </summary>
+        /// <param name="lesJoueur"></param>
         public void ResetTour(Joueur[] lesJoueur)
         {
             for(int i=0;i<lesJoueur.Length;i++)
@@ -49,7 +53,7 @@ namespace PokerStar
             }
             for(int i=0;i<carteCommune.Length;i++)
             {
-                //carteCommune[i];
+               carteCommune[i].retourner(false);
             }
             paquet.Brasser();
         }

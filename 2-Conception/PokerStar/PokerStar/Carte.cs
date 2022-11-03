@@ -18,9 +18,16 @@ namespace PokerStar
             visible = false;
         }
 
-        public void retourner()
+        public void retourner(bool RendreVisible)
         {
-            visible = true;
+            if(RendreVisible)
+            {
+                visible = true;
+            }
+            else 
+            {
+                visible = false;
+            }
         }
 
         public int Comparer(Carte carte)
