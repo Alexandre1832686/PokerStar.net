@@ -34,6 +34,7 @@ namespace PokerStar
         {
             int[] valeurForce = new int[6];
             List<int> listeDeValeur = new List<int>();
+            List<int> listPair = new List<int>(); 
             /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
 
 
@@ -54,18 +55,17 @@ namespace PokerStar
             {
                 if (listeDeValeur[i] == listeDeValeur[j + 1])
                 {
+                    listPair.Add(listeDeValeur[i]);
+                    listPair.Sort();
                     nbCarteValeurIdentique++;
                 }
             }
-            if (nbCarteValeurIdentique == 3)//une four of a kind
+            ////
+            if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
             {
-                inséréValeurDansTableau(ref valeurForce, 4, listeDeValeur);
+                VérifSiFourFullHouse(listPair);
             }
-            else if (nbCarteValeurIdentique == 3)//un tripe
-            {
-                inséréValeurDansTableau(ref valeurForce, 7, listeDeValeur);
-            }
-            else if (nbCarteValeurIdentique == 2)//double pair
+            else if (nbCarteValeurIdentique == 2)//double paire ou un triple
             {
                 inséréValeurDansTableau(ref valeurForce, 8, listeDeValeur);
             }
@@ -79,8 +79,13 @@ namespace PokerStar
             return valeurForce;
         }
 
-        private void VérifSiTriple()
+        private void VérifSiFourFullHouse(List<int> listPair)
         {
+            //si la .count est égale a 4 et si la valeur de point count est égale a 5 c'est une fullhouse
+            if(listPair.Count==4)//four of a kind
+            {
+                //inséréValeurDansTableau(ref valeurForce, 8, listeDeValeur);
+            }
         }
 
         /// <summary>
