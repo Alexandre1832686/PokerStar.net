@@ -33,7 +33,7 @@ namespace PokerStar
         /// </summary>
         /// <param name="montant"></param>
         /// <returns></returns>
-        public void Miser(int montant, int montantMinimum)
+        private void Miser(int montant, int montantMinimum)
         {
             
             bool verif = false;
@@ -145,7 +145,7 @@ namespace PokerStar
 
             
         }
-        public void allIn(int montantMinimum)
+        private void allIn(int montantMinimum)
         {
             bool verif;
             int reponse;
