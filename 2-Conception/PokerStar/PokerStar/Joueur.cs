@@ -19,6 +19,7 @@ namespace PokerStar
         bool actif;
         MainJoueur main;
         public int nbActionDansTour;
+        Carte[] mainfinal;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
@@ -264,5 +265,16 @@ namespace PokerStar
         {
             return pseudo;
         }
+
+        public Carte[] GetMainFinal()
+        {
+            return mainfinal;
+        }
+
+        public void SetMainFinale(Carte[] a)
+        {
+            mainfinal = a;
+        }
+
     }
 }
