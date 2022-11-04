@@ -64,10 +64,11 @@ namespace PokerStar
 
             //Attribuer des vvaleurs à mains final
             
-
+           
 
             int[][] valeurForce = new int[4][];
-
+            int[] valeurPlusForte= new int[6];
+            valeurPlusForte = valeurForce[4];
             for (int i = 0; i < mainsFinals.Length;i++)
             {
                 valeurForce[i] = MainJoueur.CalculerForce(mainsFinals[i]);
@@ -76,10 +77,19 @@ namespace PokerStar
             //comparer les valeurs force pis les si le plus fort ses valeurForce[2][], gagnant = lesjoeuurs[2]
            for(int i=0;i<valeurForce.Length;i++)
             {
-                for(int j = 0; j < valeurForce[i].Length;j++)
+                //si la 
+                if (valeurPlusForte[5] < valeurForce[i][5])
                 {
-
+                    valeurPlusForte = valeurForce[i];
                 }
+                else if(valeurPlusForte[5] == valeurForce[i][5])
+                {
+                    if (valeurPlusForte[4] < valeurForce[i][4])
+                    {
+                        valeurPlusForte=valeurForce[i];
+                    }
+                }
+                
             }
             return gagnant; 
         }

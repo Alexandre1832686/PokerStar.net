@@ -31,12 +31,15 @@ namespace PokerStar
         /// </summary>
         /// <param name="jeuxCarte"></param>
         /// <returns></returns>
+<<<<<<< HEAD
+<<<<<<< HEAD
         public static int[] CalculerForce(Carte[] carteCommune)
         {
             int[] valeurForce = new int[6];
             List<int> listeDeValeur = new List<int>();
             List<int> listPair = new List<int>();
             List<int> listNonPair = new List<int>();
+            /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
             //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
             for (int i = 0; i < carteCommune.Length; i++)
             {
@@ -50,19 +53,75 @@ namespace PokerStar
             for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
             {
                 if (listeDeValeur[i] == listeDeValeur[j + 1])
+=======
+        public static int[] CalculerForce(Carte[] carteCommune)
+        //{
+        //    int[] valeurForce = new int[6];
+        //    List<int> listeDeValeur = new List<int>();
+            List<int> listPair = new List<int>();
+            List<int> listNonPair = new List<int>();
+        //    //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
+        //    for (int i = 0; i < carteCommune.Length; i++)
+        //    {
+        //        listeDeValeur.Add(carteCommune[i].valeur);
+        //    }
+        //    listeDeValeur.Sort();
+        //    /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
+        //    le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
+        //   jeux puis en ordre de puissance */
+        //    int nbCarteValeurIdentique = 0;
+        //    for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
+        //    {
+        //        if (listeDeValeur[i] == listeDeValeur[j + 1])
+        //        {
+        //            listPair.Add(listeDeValeur[i]);
+        //            listPair.Sort();
+        //            nbCarteValeurIdentique++;
+        //        }
+        //    }
+                else// ajouter les carte non paire pour les rajouter a listpair a la fin 
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
                 {
-                    listPair.Add(listeDeValeur[i]);
-                    listPair.Sort();
-                    nbCarteValeurIdentique++;
+                    listNonPair.Add(listeDeValeur[i]);
+                    listNonPair.Sort();
                 }
-            
                 else// ajouter les carte non paire pour les rajouter a listpair a la fin 
                 {
                     listNonPair.Add(listeDeValeur[i]);
-                listNonPair.Sort();
+                    listNonPair.Sort();
                 }
             }
             
+<<<<<<< HEAD
+=======
+        //public int[] CalculerForce(Carte[] carteCommune)
+        //{
+        //    int[] valeurForce = new int[6];
+        //    List<int> listeDeValeur = new List<int>();
+        //    List<int> listPair = new List<int>(); 
+        //    /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
+        //    //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
+        //    for (int i = 0; i < carteCommune.Length; i++)
+        //    {
+        //        listeDeValeur.Add(carteCommune[i].valeur);
+        //    }
+        //    listeDeValeur.Sort();
+        //    /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
+        //    le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
+        //   jeux puis en ordre de puissance */
+        //    int nbCarteValeurIdentique = 0;
+        //    for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
+        //    {
+        //        if (listeDeValeur[i] == listeDeValeur[j + 1])
+        //        {
+        //            listPair.Add(listeDeValeur[i]);
+        //            listPair.Sort();
+        //            nbCarteValeurIdentique++;
+        //        }
+        //    }
+>>>>>>> 5917236fe9aece7902dd838043eac2435beea554
+=======
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
             //si le nb de carte identique est plus grand que 0 
             if (nbCarteValeurIdentique > 0)
             {
@@ -109,7 +168,15 @@ namespace PokerStar
         {
             bool verif = false;
             if (carteCommunes[0].couleur == carteCommunes[1].couleur && carteCommunes[0].couleur == carteCommunes[2].couleur && carteCommunes[0].couleur 
+<<<<<<< HEAD
+                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur )
+=======
+<<<<<<< HEAD
                 == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur)
+=======
+                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur )
+>>>>>>> b1d7f696b73fdfecc04c510364485d68ecb2ef46
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
             {
                 verif = true;
                 return verif;
@@ -138,7 +205,15 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
+<<<<<<< HEAD
         private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur, List<int> listNonPair)
+=======
+<<<<<<< HEAD
+        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
+=======
+        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur, List<int> listNonPair)
+>>>>>>> b1d7f696b73fdfecc04c510364485d68ecb2ef46
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
         {
             //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
@@ -164,7 +239,15 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
+<<<<<<< HEAD
         private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur, List<int> listNonPair)
+=======
+<<<<<<< HEAD
+        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
+=======
+        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur, List<int> listNonPair)
+>>>>>>> b1d7f696b73fdfecc04c510364485d68ecb2ef46
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
         {
             //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
             if (listPair.Count==4)//double pair
@@ -210,5 +293,4 @@ namespace PokerStar
             return carte;
         }
     }
-   
 }
