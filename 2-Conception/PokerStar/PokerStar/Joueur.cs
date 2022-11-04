@@ -15,12 +15,14 @@ namespace PokerStar
         string nom;
         string pseudo;
         int argent;
-        static int bet;
+        int bet;
         bool actif;
         MainJoueur main;
+        public int nbActionDansTour;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
+            nbActionDansTour = 0;
             this.nom = nom;
             this.pseudo = pseudo;
             argent = 300;
@@ -36,8 +38,15 @@ namespace PokerStar
         private void Miser(int montant, int montantMinimum)
         {
             
+            
+            
+
+            //public void Miser(int montant, int montantMinimum)
+            //{
+
             bool verif = false;
             int reponse;
+
             //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
             //et si c'est correct 
             if (montant >= argent)
@@ -59,9 +68,31 @@ namespace PokerStar
                 {
                     raise(montantMinimum / 2);
                 }
-                else 
-                    Coucher();
-                
+                else
+                {
+                    do
+                    {
+                        Console.WriteLine("Voulez-vous : ");
+                        Console.WriteLine("1- miser une plus petite somme ");
+                        Console.WriteLine("2- Vous couchez ");
+                        verif = int.TryParse(Console.ReadLine(), out reponse);
+                    } while (verif == false && reponse == 1 || reponse == 2);
+
+                    if (reponse == 1)
+                    {
+                        do
+                        {
+                            Console.WriteLine("Combien voulez-vous miser (reste " + argent + "$)");
+                            verif = int.TryParse(Console.ReadLine(), out reponse);
+                        } while (verif == false && reponse > 0);
+
+                    }
+                    else
+                    {
+                        Coucher();
+                        
+                    }
+                }
             }
             else
             {
@@ -159,7 +190,9 @@ namespace PokerStar
 
             if (reponse == 1)
             {
-                bet = argent;
+                
+                bet += argent;
+                argent = 0;
             }
 
             else
@@ -183,6 +216,11 @@ namespace PokerStar
                     Coucher();
                 }
             }
+        }
+
+        public void AddArgent(int montant)
+        {
+            argent += montant;
         }
     }
 }

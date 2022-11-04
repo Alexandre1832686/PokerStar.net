@@ -8,11 +8,13 @@ namespace PokerStar
 {
     public class Tour
     {
-        Carte[] carteCommune;
+        public static bool GameisOver; 
+        public Carte[] carteCommune = new Carte[5];
         int etatTour=0;
-        Tour( Carte[] LesCarteCommune)
+        Joueur[] lesJoueurs;
+        public Tour()
         {
-            carteCommune = LesCarteCommune;
+            RéinitialiserCartesCommunes();
         }
         /// <summary>
         /// permet de rendre les carte visible a tous selon le tour 
@@ -26,7 +28,7 @@ namespace PokerStar
                 position = 0;
                 inbCarteAtourner = 3;
             }
-            else if(etatTour==2 )
+            else if(etatTour==2)
             {
                 position = 3;
                 inbCarteAtourner = 1;
@@ -36,7 +38,19 @@ namespace PokerStar
                 position=4;
                 inbCarteAtourner = 1;
             }
-            for (int i = position; i < inbCarteAtourner; i++)
+            else if(etatTour == 4)
+            {
+                etatTour = 0;
+                ResetTour(lesJoueurs);
+                RéinitialiserCartesCommunes();
+
+
+
+                //***********************************************      ICI POUR LEVALUATIION DU GAGNANT        *****************************************************//
+                EndTour(lesJoueurs[0]);
+            }
+
+            for (int i = position; i < inbCarteAtourner+position; i++)
             {
                 carteCommune[i].retourner(true);
             }
@@ -47,7 +61,8 @@ namespace PokerStar
         /// <param name="lesJoueur"></param>
         public void ResetTour(Joueur[] lesJoueur)
         {
-            for(int i=0;i<lesJoueur.Length;i++)
+            
+            for (int i=0;i<lesJoueur.Length;i++)
             {
                 lesJoueur[i].ResetMain();
             }
@@ -59,8 +74,47 @@ namespace PokerStar
         }
         public void AugmenterEtatTour()
         {
+            foreach(Joueur j in lesJoueurs)
+            {
+                j.nbActionDansTour = 0;
+            }
+
             this.etatTour++;
+            ChangerEtat();
+        }
+        void RéinitialiserCartesCommunes()
+        {
+            Carte[] c = new Carte[5];
+            for (int i = 0; i < 5; i++)
+            {
+                c[i] = paquet.GetTopCarte();
+            }
+
+            carteCommune = c;
         }
 
+        public void SetJoueurs(Joueur[] j)
+        {
+            lesJoueurs = j;
+        }
+
+        void EndTour(Joueur winer)
+        {
+            
+            int total = 0;
+            foreach(Joueur j in lesJoueurs)
+            {
+                total += j.GetBet();
+                j.ResetBet();
+            }
+            winer.AddArgent(total);
+            foreach (Joueur j in lesJoueurs)
+            {
+                if(j.GetArgent() == 0)
+                {
+                    GameisOver = true;
+                }
+            }
+        }
     }
 }
