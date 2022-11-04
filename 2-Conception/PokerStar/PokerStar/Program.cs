@@ -18,7 +18,6 @@ namespace PokerStar
             
             
             Joueur[] joueurs = new Joueur[4];
-            Random rand = new Random();
              for(int i = 0; i < 4; i++)
              {
                 Tuple<string, string> Joueur = NomPseudo();
@@ -46,9 +45,9 @@ namespace PokerStar
                             p.SelectionAction(joueurs[p.indJoueurCourrant]);
                         }
                     } while (!toutLeMondeAJoue(joueurs, joueurs[p.indJoueurCourrant]) || !betisequal(joueurs, p));
-                    for (int i = 0; i < 4; i++)
+                    foreach (Joueur i in joueurs)
                     {
-                        joueurs[i].ResetBet();
+                        i.ResetBet();
                     }
                     p.AugmenterEtatTour();
                 }
@@ -109,8 +108,12 @@ namespace PokerStar
         static int x = 1;
         static Tuple<string,string> NomPseudo()
         {
+            if (x > 4)
+            {
+                x = 1;
+            }
             string nom, pseudo;
-            
+            Console.Clear();
 
             Console.WriteLine("Joueur " + x + " Quel est votre nom :");
             nom = Console.ReadLine();
