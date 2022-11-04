@@ -14,6 +14,7 @@ namespace PokerStar
         Joueur[] lesJoueurs;
         public Tour()
         {
+            GameisOver = false;
             RéinitialiserCartesCommunes();
         }
         /// <summary>
