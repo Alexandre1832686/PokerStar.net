@@ -94,11 +94,12 @@ namespace PokerStar
             //comparer les valeurs force pis les si le plus fort ses valeurForce[2][], gagnant = lesjoeuurs[2]
            for(int i=0;i<valeurForce.Length;i++)
             {
-                //si la 
+                //si la rank de force(position 5) est plus haut que la valeur la plus forte remplace le  
                 if (valeurPlusForte[5] < valeurForce[i][5])
                 {
                     valeurPlusForte = valeurForce[i];
                 }
+                //sinon si le rank de force est égale a l'autre va chercher la carte la plus haute 
                 else if(valeurPlusForte[5] == valeurForce[i][5])
                 {
                     if (valeurPlusForte[4] < valeurForce[i][4])
