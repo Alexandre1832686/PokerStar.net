@@ -30,55 +30,55 @@ namespace PokerStar
         /// </summary>
         /// <param name="jeuxCarte"></param>
         /// <returns></returns>
-        public int[] CalculerForce(Carte[] carteCommune)
-        {
-            int[] valeurForce = new int[6];
-            List<int> listeDeValeur = new List<int>();
-            List<int> listPair = new List<int>(); 
-            /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
+        //public int[] CalculerForce(Carte[] carteCommune)
+        //{
+        //    int[] valeurForce = new int[6];
+        //    List<int> listeDeValeur = new List<int>();
+        //    List<int> listPair = new List<int>(); 
+        //    /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
 
 
 
-            //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
-            for (int i = 0; i < carteCommune.Length; i++)
-            {
-                listeDeValeur.Add(carteCommune[i].valeur);
-            }
-            listeDeValeur.Sort();
+        //    //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
+        //    for (int i = 0; i < carteCommune.Length; i++)
+        //    {
+        //        listeDeValeur.Add(carteCommune[i].valeur);
+        //    }
+        //    listeDeValeur.Sort();
 
 
-            /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
-            le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
-           jeux puis en ordre de puissance */
-            int nbCarteValeurIdentique = 0;
-            for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
-            {
-                if (listeDeValeur[i] == listeDeValeur[j + 1])
-                {
-                    listPair.Add(listeDeValeur[i]);
-                    listPair.Sort();
-                    nbCarteValeurIdentique++;
-                }
-            }
-            ////
-            if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
-            {
-                return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
-            }
-            else if (nbCarteValeurIdentique == 2)//double paire ou un triple
-            {
-                return valeurForce=VerifSiDouleOuTriplePair(listPair,  listeDeValeur);
-            }
-            else if (nbCarteValeurIdentique == 1)//une paire 
-            {
-                return valeurForce=inséréValeurDansTableau(  9, listeDeValeur);
-            }
+        //    /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
+        //    le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
+        //   jeux puis en ordre de puissance */
+        //    int nbCarteValeurIdentique = 0;
+        //    for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
+        //    {
+        //        if (listeDeValeur[i] == listeDeValeur[j + 1])
+        //        {
+        //            listPair.Add(listeDeValeur[i]);
+        //            listPair.Sort();
+        //            nbCarteValeurIdentique++;
+        //        }
+        //    }
+        //    ////
+        //    if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
+        //    {
+        //        return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
+        //    }
+        //    else if (nbCarteValeurIdentique == 2)//double paire ou un triple
+        //    {
+        //        return valeurForce=VerifSiDouleOuTriplePair(listPair,  listeDeValeur);
+        //    }
+        //    else if (nbCarteValeurIdentique == 1)//une paire 
+        //    {
+        //        return valeurForce=inséréValeurDansTableau(  9, listeDeValeur);
+        //    }
             
-            ///////////////////////////////////////////////////////////////
-            /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
-             alros c'est une flush */
+        //    ///////////////////////////////////////////////////////////////
+        //    /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
+        //     alros c'est une flush */
             
-        }
+        //}
 
 
         /// <summary>

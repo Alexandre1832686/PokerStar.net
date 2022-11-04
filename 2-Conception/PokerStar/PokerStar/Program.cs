@@ -13,10 +13,8 @@ namespace PokerStar
         static void Main(string[] args)
         {
            
-            //bug mise min
+            //initialisation
             paquet.Brasser();
-            
-            
             Joueur[] joueurs = new Joueur[4];
             Random rand = new Random();
              for(int i = 0; i < 4; i++)
@@ -29,8 +27,10 @@ namespace PokerStar
             partie p = new partie(joueurs);
             
             bool gameisover = false;
+            //vas rouler tant que la partie n'est pas fini
             while(!gameisover)
             {
+                //si la partie est terminer, demande de rejouer, si repond non, ne change rien et ca vas sortir de la boucle. si repond oui, recommence une partie
                 if (Tour.GameisOver)
                 {
                     
@@ -38,14 +38,18 @@ namespace PokerStar
                 }
                 else
                 {
+                    //sort à la fin de l'étape
                     do
                     {
+                        //deroulement d'un étape
                         p.AfficherJeu();
-                        if (joueurs[p.indJoueurCourrant].GetEtat())
+                        if (joueurs[p.indJoueurCourrant].GetEtat() || joueurs[p.indJoueurCourrant].GetArgent()==0)
                         {
                             p.SelectionAction(joueurs[p.indJoueurCourrant]);
                         }
                     } while (!toutLeMondeAJoue(joueurs, joueurs[p.indJoueurCourrant]) || !betisequal(joueurs, p));
+
+                    //change l'étape et reset les bets
                     for (int i = 0; i < 4; i++)
                     {
                         joueurs[i].ResetBet();
@@ -55,12 +59,17 @@ namespace PokerStar
             }
         }
 
-
+        /// <summary>
+        /// verifie si tout les bets sont égaux
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         static bool betisequal(Joueur[] j, partie p)
         {
+            
             List<Joueur> joueurDebout = new List<Joueur>();
             
-
             foreach (Joueur joueur in j)
             {
                 if(joueur.GetEtat())
@@ -89,6 +98,12 @@ namespace PokerStar
             }
         }
 
+        /// <summary>
+        /// verifie si tout le monde à joué au moin une fois dans l'étape
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="joueurActu"></param>
+        /// <returns></returns>
         static bool toutLeMondeAJoue(Joueur[] j, Joueur joueurActu)
         { 
             joueurActu.nbActionDansTour++;
@@ -107,6 +122,8 @@ namespace PokerStar
         }
         //variable pour compter les joueurs
         static int x = 1;
+
+        //demande les nom et pseudo pour la création du joueur
         static Tuple<string,string> NomPseudo()
         {
             string nom, pseudo;
@@ -120,6 +137,7 @@ namespace PokerStar
             return Tuple.Create <string,string>(nom,pseudo);
         }
 
+        //demande si on veut rejoué et effectue les action nessessaire pour concordé en fonction de la réponse de l'utilisateur 
         static void AskToPlayAgain()
         {
             bool verif = false;
