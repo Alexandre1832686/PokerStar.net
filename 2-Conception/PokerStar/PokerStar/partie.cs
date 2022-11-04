@@ -9,10 +9,13 @@ namespace PokerStar
 {
     internal class partie
     {
+        //variables
         Joueur[] joueurs;
         Tour tour;
+        public int indJoueurCourrant = 0;
+        int total = 0;
 
-
+        //constructeur
         public partie(Joueur[] j)
         {
             joueurs = j;
@@ -20,8 +23,18 @@ namespace PokerStar
             tour.SetJoueurs(joueurs);
         }
         
-        public int indJoueurCourrant=0;
-        int total = 0;
+        /// <summary>
+        /// Affichage : l'indice du joueur
+        /// courrant permet de savoir à quel élément du tableau de joueur
+        /// on doit faire apparêtre les cartes les autres joueurs ont leurs
+        /// carte tourné mais on garde la trace de ceux-ci pour afficher dans
+        /// le bon ordre leur nom, argent, et la couleur des cartes
+        /// représente l'état. les cartes publiques sont affichés dans le coin
+        /// et leurs valeur et couleur apparet seulement si la carte est tournée(bool visible)
+        /// 
+        /// Affiche le nom, l'argent,  le bet de la ronde en cours et l'état(grace a la couleur des cartes) de
+        /// tout les joueurs et affiche le total a gagner a la fin de la ronde
+        /// </summary>
         public void AfficherJeu()
         {
 
@@ -220,6 +233,10 @@ namespace PokerStar
 
         }
 
+        /// <summary>
+        /// deamande une entré corespondante au actions et appelle les fonctions relatives à la selection(Call Raise et Fold)
+        /// </summary>
+        /// <param name="j"></param>
         public void SelectionAction(Joueur j)
         {
             int choix;
@@ -262,6 +279,11 @@ namespace PokerStar
             }
         }
 
+        /// <summary>
+        /// Convertie la couleur (Text) en couleur (signe)
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         string ConvertirCouleur(Couleur a)
         {
             string retour;
@@ -285,6 +307,12 @@ namespace PokerStar
             }
             return retour;
         }
+
+        /// <summary>
+        /// Transforme la valeur numérique en Lettres Lorsque nessessaire
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         string ConvertirValeur(int a)
         {
             string retour;
@@ -304,6 +332,10 @@ namespace PokerStar
             {
                 retour = "10";
             }
+            else if (a == 1)
+            {
+                retour = "A";
+            }
             else
             {
                 retour = a + " ";
@@ -311,6 +343,7 @@ namespace PokerStar
             return retour;
         }
 
+        //Affiche les Carte publiques à un endroit précis et affiche leurs force et couleur seulement si les cartes sont tournés
         void AfficherCartePub(int ind)
         {
             if(GetCartePublic(ind).visible)
@@ -348,21 +381,27 @@ namespace PokerStar
             }
             
         }
+
+        //Renvoie une carte publique seulon l'indice envoyé en parametre
         public Carte GetCartePublic(int ind)
         {
             return tour.carteCommune[ind];
         }
+
+        //passe à l'état suivant dans la partie (retourne des cartes)
         public void AugmenterEtatTour()
         {
             tour.AugmenterEtatTour();
         }
 
+        //donne le pot à un joeur
         public void distribuerPot(Joueur j)
         {
             j.AddArgent(total);
             total = 0;
         }
 
+        //verifie si la partie est terminer
         public void CheckIfGameIsOver(List<Joueur> joueurs)
         {
             for(int i = 0; i < 4;)
@@ -372,8 +411,6 @@ namespace PokerStar
 
                 }
             }
-            
-            
         }
 
     }
