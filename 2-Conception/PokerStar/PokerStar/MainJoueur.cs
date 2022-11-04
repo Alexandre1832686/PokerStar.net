@@ -59,25 +59,36 @@ namespace PokerStar
                     listPair.Sort();
                     nbCarteValeurIdentique++;
                 }
+                
             }
-            ////
-            if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
+            //si le nb de carte identique est plus grand que 0 
+            if (nbCarteValeurIdentique > 0)
             {
-                return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
+                if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
+                {
+                    return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
+                }
+                else if (nbCarteValeurIdentique == 2)//double paire ou un triple
+                {
+                    return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur);
+                }
+                else if (nbCarteValeurIdentique == 1)//une paire 
+                {
+                    return valeurForce = inséréValeurDansTableau(9, listeDeValeur);
+                }
             }
-            else if (nbCarteValeurIdentique == 2)//double paire ou un triple
+            else
             {
-                return valeurForce=VerifSiDouleOuTriplePair(listPair,  listeDeValeur);
+                /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
+             alors c'est une flush */
+                if (listeDeValeur[0] == listeDeValeur[1] && listeDeValeur[0] == listeDeValeur[2] && listeDeValeur[0] == listeDeValeur[3] && listeDeValeur[0] == listeDeValeur[4] &&
+                    listeDeValeur[0] == listeDeValeur[5])
+                {
+
+                }
             }
-            else if (nbCarteValeurIdentique == 1)//une paire 
-            {
-                return valeurForce=inséréValeurDansTableau(  9, listeDeValeur);
-            }
-            
-            ///////////////////////////////////////////////////////////////
-            /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
-             alros c'est une flush */
-            
+
+
         }
 
 
