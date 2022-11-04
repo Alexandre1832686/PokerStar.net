@@ -31,7 +31,7 @@ namespace PokerStar
         /// </summary>
         /// <param name="jeuxCarte"></param>
         /// <returns></returns>
-        public int[] CalculerForce(Carte[] carteCommune)
+        public static int[] CalculerForce(Carte[] carteCommune)
         {
             int[] valeurForce = new int[6];
             List<int> listeDeValeur = new List<int>();
@@ -90,17 +90,17 @@ namespace PokerStar
                 //si c'est une suite donc c'est un flush
                 if(MemeSorte(carteCommune))
                 {
-                    return valeurForce= InséréValeurDansTableau(9,listeDeValeur);
+                    return valeurForce= InséréValeurDansTableau(5,listeDeValeur);
                 }
             }
             //high card
             return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
         }
-        private bool MemeSorte(Carte[]carteCommunes)
+        private static bool MemeSorte(Carte[]carteCommunes)
         {
             bool verif = false;
             if (carteCommunes[0].couleur == carteCommunes[1].couleur && carteCommunes[0].couleur == carteCommunes[2].couleur && carteCommunes[0].couleur 
-                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur && carteCommunes[0].couleur == carteCommunes[5].couleur)
+                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur)
             {
                 verif = true;
                 return verif;
@@ -112,7 +112,7 @@ namespace PokerStar
         /// </summary>
         /// <param name="listeDeValeur"></param>
         /// <returns></returns>
-        private bool UneSuite(List<int>listeDeValeur)
+        private static bool UneSuite(List<int>listeDeValeur)
         {
             bool verif = false;
             if (listeDeValeur[0] == listeDeValeur[1]-1 && listeDeValeur[0] == listeDeValeur[2] - 2 && listeDeValeur[0] == listeDeValeur[3] - 3 
@@ -129,7 +129,7 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
-        private int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
+        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
         {
             //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
@@ -147,7 +147,7 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
-        private int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
+        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
         {
             //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
             if (listPair.Count==4)//double pair
@@ -165,11 +165,11 @@ namespace PokerStar
         /// <param name="valeurForce"></param>
         /// <param name="powerRank"></param>
         /// <param name="listeDeValeur"></param>
-        private int[] InséréValeurDansTableau(  int powerRank, List<int> listeDeValeur)
+        private static int[] InséréValeurDansTableau(  int powerRank, List<int> listeDeValeur)
         {
             int[] valeurForce = new int[6];
-            valeurForce[0] = powerRank;
-            for (int i = 1; i < valeurForce.Length; i++)
+            valeurForce[5] = powerRank;
+            for (int i = 0; i < listeDeValeur.Count; i++)
             {
                 valeurForce[i] = listeDeValeur[i];
             }
