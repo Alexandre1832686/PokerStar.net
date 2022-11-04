@@ -32,30 +32,30 @@ namespace PokerStar
         /// <param name="jeuxCarte"></param>
         /// <returns></returns>
         public static int[] CalculerForce(Carte[] carteCommune)
-        {
-            int[] valeurForce = new int[6];
-            List<int> listeDeValeur = new List<int>();
+        //{
+        //    int[] valeurForce = new int[6];
+        //    List<int> listeDeValeur = new List<int>();
             List<int> listPair = new List<int>();
             List<int> listNonPair = new List<int>();
-            /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
-            //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
-            for (int i = 0; i < carteCommune.Length; i++)
-            {
-                listeDeValeur.Add(carteCommune[i].valeur);
-            }
-            listeDeValeur.Sort();
-            /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
-            le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
-           jeux puis en ordre de puissance */
-            int nbCarteValeurIdentique = 0;
-            for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
-            {
-                if (listeDeValeur[i] == listeDeValeur[j + 1])
-                {
-                    listPair.Add(listeDeValeur[i]);
-                    listPair.Sort();
-                    nbCarteValeurIdentique++;
-                }
+        //    //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
+        //    for (int i = 0; i < carteCommune.Length; i++)
+        //    {
+        //        listeDeValeur.Add(carteCommune[i].valeur);
+        //    }
+        //    listeDeValeur.Sort();
+        //    /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
+        //    le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
+        //   jeux puis en ordre de puissance */
+        //    int nbCarteValeurIdentique = 0;
+        //    for (int j = 0, i = 0; i < listeDeValeur.Count - 1; i++, j++)
+        //    {
+        //        if (listeDeValeur[i] == listeDeValeur[j + 1])
+        //        {
+        //            listPair.Add(listeDeValeur[i]);
+        //            listPair.Sort();
+        //            nbCarteValeurIdentique++;
+        //        }
+        //    }
                 else// ajouter les carte non paire pour les rajouter a listpair a la fin 
                 {
                     listNonPair.Add(listeDeValeur[i]);
@@ -76,9 +76,11 @@ namespace PokerStar
                 }
                 else if (nbCarteValeurIdentique == 1)//une paire 
                 {
-                    return valeurForce = InséréValeurDansTableau(9, listeDeValeur);
+                    return valeurForce = InséréValeurDansTableau(9, listeDeValeur);                
                 }
-            }
+             
+             }
+
             else
             {
                //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
@@ -208,4 +210,5 @@ namespace PokerStar
             return carte;
         }
     }
+   
 }
