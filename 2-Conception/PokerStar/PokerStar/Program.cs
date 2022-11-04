@@ -9,8 +9,10 @@ namespace PokerStar
 {
     internal class Program
     {
+      
         static void Main(string[] args)
         {
+           
             //bug mise min
             paquet.Brasser();
             
@@ -19,7 +21,8 @@ namespace PokerStar
             Random rand = new Random();
              for(int i = 0; i < 4; i++)
              {
-                 Joueur j = new Joueur("alex"+rand.Next(0,200), "al");
+                Tuple<string, string> Joueur = NomPseudo();
+                Joueur j = new Joueur(Joueur.Item1, Joueur.Item2);
                  joueurs[i] = j;
              }
             
@@ -97,6 +100,20 @@ namespace PokerStar
             }
 
             return verif;
+        }
+        //variable pour compter les joueurs
+        static int x = 1;
+        static System.Tuple<string,string> NomPseudo()
+        {
+            string nom, pseudo;
+            
+
+            Console.WriteLine("Joueur " + x + " Quel est votre nom :");
+            nom = Console.ReadLine();
+            Console.WriteLine("Joueur " + x + " Quel est votre Pseudo :");
+            pseudo = Console.ReadLine();
+            x++;
+            return System.Tuple.Create <string,string>(nom,pseudo);
         }
     }
 }

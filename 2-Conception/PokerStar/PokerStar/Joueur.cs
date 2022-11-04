@@ -37,18 +37,12 @@ namespace PokerStar
         /// <returns></returns>
         private void Miser(int montant, int montantMinimum)
         {
-            
-            
-            
-
-            //public void Miser(int montant, int montantMinimum)
-            //{
 
             bool verif = false;
             int reponse;
 
             //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
-            //et si c'est correct 
+            //et si c'est correct mise la somme demandé
             if (montant >= argent)
             {
                 allIn(montantMinimum);
