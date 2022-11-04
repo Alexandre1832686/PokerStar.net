@@ -24,14 +24,9 @@ namespace PokerStar
         int total = 0;
         public void AfficherJeu()
         {
-            total = 0;
-            foreach(Joueur joueur in joueurs)
-            {
-                total += joueur.GetBet();
-            }
-            
 
-            if(indJoueurCourrant<3)
+
+            if (indJoueurCourrant<3)
             {
                 indJoueurCourrant++;
             }
@@ -62,7 +57,7 @@ namespace PokerStar
             Console.Write("        Total : " + total + " $");
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("______________________________________________");
-            Console.WriteLine("                   " + joueurs[b].GetNom() + "(" + joueurs[b].GetArgent() + " $)");
+            Console.WriteLine("                   " + joueurs[b].GetPseudo() + "(" + joueurs[b].GetArgent() + " $)");
             if (!joueurs[b].GetEtat())
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -80,7 +75,7 @@ namespace PokerStar
             Console.WriteLine("                        " + joueurs[b].GetBet() + " $");
             Console.WriteLine("");
             Console.WriteLine(""); 
-            Console.WriteLine("" + joueurs[a].GetNom() + "(" + joueurs[a].GetArgent() + " $)" + "                     " + joueurs[c].GetNom() + "(" + joueurs[c].GetArgent() + " $)");
+            Console.WriteLine("" + joueurs[a].GetPseudo() + "(" + joueurs[a].GetArgent() + " $)" + "                     " + joueurs[c].GetPseudo() + "(" + joueurs[c].GetArgent() + " $)");
 
 
             
@@ -205,7 +200,7 @@ namespace PokerStar
 
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.WriteLine("                   " + joueurs[indJoueurCourrant].GetNom() + "(" + joueurs[indJoueurCourrant].GetArgent() + " $)");
+            Console.WriteLine("                   " + joueurs[indJoueurCourrant].GetPseudo() + "(" + joueurs[indJoueurCourrant].GetArgent() + " $)");
             Console.WriteLine("                    ____   ____");
             Console.WriteLine("                   |    | |    |");
             Console.WriteLine("                   |  " + ConvertirValeur(joueurs[indJoueurCourrant].GetMain().GetCarte(0).valeur) + "| |  " + ConvertirValeur(joueurs[indJoueurCourrant].GetMain().GetCarte(1).valeur) + "|");
@@ -253,9 +248,11 @@ namespace PokerStar
                 
                 case 1:
                     joueurs[indJoueurCourrant].call(betTotalMax - joueurs[indJoueurCourrant].GetBet());
+                    total += joueurs[indJoueurCourrant].GetBet();
                     break;
                 case 2:
                     joueurs[indJoueurCourrant].raise(betTotalMax - joueurs[indJoueurCourrant].GetBet() *2);
+                    total += joueurs[indJoueurCourrant].GetBet();
                     break;
                 case 3:
                     joueurs[indJoueurCourrant].Coucher();
@@ -363,10 +360,19 @@ namespace PokerStar
         public void distribuerPot(Joueur j)
         {
             j.AddArgent(total);
+            total = 0;
         }
 
-        public void CheckIfGameIsOver()
+        public void CheckIfGameIsOver(List<Joueur> joueurs)
         {
+            for(int i = 0; i < 4;)
+            {
+                if (joueurs[i].GetArgent() == 0)
+                {
+
+                }
+            }
+            
             
         }
 

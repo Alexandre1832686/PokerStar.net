@@ -33,8 +33,8 @@ namespace PokerStar
             {
                 if (Tour.GameisOver)
                 {
-                    //Ajouter jouer plusieurs games
-                    //AskToPlayAgain();
+                    
+                    AskToPlayAgain();
                 }
                 else
                 {
@@ -46,6 +46,10 @@ namespace PokerStar
                             p.SelectionAction(joueurs[p.indJoueurCourrant]);
                         }
                     } while (!toutLeMondeAJoue(joueurs, joueurs[p.indJoueurCourrant]) || !betisequal(joueurs, p));
+                    for (int i = 0; i < 4; i++)
+                    {
+                        joueurs[i].ResetBet();
+                    }
                     p.AugmenterEtatTour();
                 }
             }
@@ -103,7 +107,7 @@ namespace PokerStar
         }
         //variable pour compter les joueurs
         static int x = 1;
-        static System.Tuple<string,string> NomPseudo()
+        static Tuple<string,string> NomPseudo()
         {
             string nom, pseudo;
             
@@ -113,7 +117,26 @@ namespace PokerStar
             Console.WriteLine("Joueur " + x + " Quel est votre Pseudo :");
             pseudo = Console.ReadLine();
             x++;
-            return System.Tuple.Create <string,string>(nom,pseudo);
+            return Tuple.Create <string,string>(nom,pseudo);
+        }
+
+        static void AskToPlayAgain()
+        {
+            bool verif = false;
+            int rep;
+            string[] imagineCallLeMain = new string[] { "a" };
+            do
+            {
+                Console.WriteLine("Voulez-vous rejouer ?:");
+                Console.WriteLine("1 - oui 2 - non");
+                verif = int.TryParse(Console.ReadLine(), out rep);
+            } while (!verif && rep != 1 && rep != 2);
+            if (rep == 1)
+            {
+                Main(imagineCallLeMain);
+            }
+            else 
+                Console.ReadKey();
         }
     }
 }

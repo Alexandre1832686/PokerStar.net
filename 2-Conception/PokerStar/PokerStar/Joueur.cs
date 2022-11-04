@@ -42,7 +42,8 @@ namespace PokerStar
             int reponse;
 
             //si le montant que le joueur veux miser est supérieur à son montant total lui offre l'optin de all-in ce qu'il lui reste
-            //et si c'est correct mise la somme demandé
+            //si c'est correct mise la somme demandé si le montant miser est inférieur à la somme minimum le joueur doit remiser ou se coucher
+            //sinon mise la somme demander
             if (montant >= argent)
             {
                 allIn(montantMinimum);
@@ -95,16 +96,24 @@ namespace PokerStar
             }
         }
 
+        /// <summary>
+        /// permet de check
+        /// </summary>
         public void Check()
         {
             actif = true;
         }
-
+        /// <summary>
+        /// Permet de coucher le joueur
+        /// </summary>
         public void Coucher()
         {
             actif= false;
         }    
 
+        /// <summary>
+        /// donne une nouvelle main au joueur
+        /// </summary>
         public void ResetMain()
         {
             actif= true;
@@ -112,37 +121,57 @@ namespace PokerStar
 
         }
 
+        /// <summary>
+        /// renvoie le nom du joueur
+        /// </summary>
+        /// <returns></returns>
         public string GetNom()
         {
             return nom;
         }
-
+        /// <summary>
+        /// renvoie le total de se que le joueur à misé
+        /// </summary>
+        /// <returns></returns>
         public int GetBet()
         {
             return bet;
         }
 
+        /// <summary>
+        /// remet la mise égale a 0(pour les fin de tour) 
+        /// </summary>
         public void ResetBet()
         {
              bet = 0;
         }
 
+        /// <summary>
+        /// renvoi la somme d'argent au joueur
+        /// </summary>
+        /// <returns></returns>
         public int GetArgent()
         {
             return argent;
         }
 
-
+        /// <summary>
+        /// renvoie la main du joueur
+        /// </summary>
+        /// <returns></returns>
         public MainJoueur GetMain()
         {
             return main;
         }
-
+        //Renvoie l'état du joueur
         public bool GetEtat()
         {
             return actif;
         }
-
+        /// <summary>
+        /// permet de miser 
+        /// </summary>
+        /// <param name="montantBase"></param>
         public void raise(int montantBase)
         {
             bool verif = false;
@@ -155,10 +184,12 @@ namespace PokerStar
             Miser(mise,(2*montantBase));
         }
 
+        /// <summary>
+        /// permet d'égaliser la somme minimal a miser
+        /// </summary>
+        /// <param name="montantBase"></param>
         public void call(int montantBase)
         {
-            bool verif = false;
-            string reponse;
             if (argent <= montantBase)
             {
                 allIn(montantBase);
@@ -170,6 +201,11 @@ namespace PokerStar
 
             
         }
+
+        /// <summary>
+        /// Sert a mettre le joueur all-in
+        /// </summary>
+        /// <param name="montantMinimum"></param>
         private void allIn(int montantMinimum)
         {
             bool verif;
@@ -212,9 +248,21 @@ namespace PokerStar
             }
         }
 
+        /// <summary>
+        /// ajoute l'argent gagner
+        /// </summary>
+        /// <param name="montant"></param>
         public void AddArgent(int montant)
         {
             argent += montant;
+        }
+        /// <summary>
+        /// renvoie le pseudo
+        /// </summary>
+        /// <returns></returns>
+        public string GetPseudo()
+        {
+            return pseudo;
         }
     }
 }
