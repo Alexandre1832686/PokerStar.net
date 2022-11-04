@@ -89,6 +89,23 @@ namespace PokerStar
         //            nbCarteValeurIdentique++;
         //        }
         //    }
+<<<<<<< HEAD
+        //    //si le nb de carte identique est plus grand que 0 
+        //    if (nbCarteValeurIdentique > 0)
+        //    {
+        //        if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
+        //        {
+        //            return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
+        //        }
+        //        else if (nbCarteValeurIdentique == 2)//double paire ou un triple
+        //        {
+        //            return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur);
+        //        }
+        //        else if (nbCarteValeurIdentique == 1)//une paire 
+        //        {
+        //            return valeurForce = InséréValeurDansTableau(9, listeDeValeur);                
+        //        }
+=======
                 else// ajouter les carte non paire pour les rajouter a listpair a la fin 
         //    if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
         //    {
@@ -152,9 +169,37 @@ namespace PokerStar
                 {
                     return valeurForce = InséréValeurDansTableau(9, listeDeValeur);                
                 }
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
              
-             }
+        //     }
 
+<<<<<<< HEAD
+        //    else
+        //    {
+        //       //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
+        //        if(UneSuite(listeDeValeur))
+        //        {
+        //            //straight flush ou royal flush
+        //            if(MemeSorte(carteCommune))
+        //            {
+        //                if (carteCommune[0].valeur==10)
+        //                { return valeurForce = InséréValeurDansTableau(1, listeDeValeur); }
+        //                return valeurForce=InséréValeurDansTableau(2,listeDeValeur);
+        //            }
+        //            //straight
+        //            return valeurForce = InséréValeurDansTableau(6, listeDeValeur);
+        //        }
+        //        //si c'est une suite donc c'est un flush
+        //        if(MemeSorte(carteCommune))
+        //        {
+        //            return valeurForce= InséréValeurDansTableau(9,listeDeValeur);
+        //        }
+        //    }
+        //    //high card
+        //    return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
+        //}
+        private bool MemeSorte(Carte[]carteCommunes)
+=======
             else
             {
                //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
@@ -180,10 +225,10 @@ namespace PokerStar
             return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
         }
         private static bool MemeSorte(Carte[]carteCommunes)
+>>>>>>> d9b4a2e5b7b6824a432d3ea8c96b95c3be5411a0
         {
             bool verif = false;
             if (carteCommunes[0].couleur == carteCommunes[1].couleur && carteCommunes[0].couleur == carteCommunes[2].couleur && carteCommunes[0].couleur 
-                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur )
                 
             {
                 verif = true;
@@ -215,10 +260,6 @@ namespace PokerStar
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
         private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur, List<int> listNonPair)
-        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
-=======
-        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur, List<int> listNonPair)
->>>>>>> b1d7f696b73fdfecc04c510364485d68ecb2ef46
         {
             //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
@@ -245,10 +286,6 @@ namespace PokerStar
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
         private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur, List<int> listNonPair)
-        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
-=======
-        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur, List<int> listNonPair)
->>>>>>> b1d7f696b73fdfecc04c510364485d68ecb2ef46
         {
             //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
             if (listPair.Count==4)//double pair

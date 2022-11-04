@@ -63,48 +63,41 @@ namespace PokerStar
                 }
             }
             
-            //si le nb de carte identique est plus grand que 0 
-            if (nbCarteValeurIdentique > 0)
-            {
-                if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
-                {
-                    return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur,listNonPair);
-                }
-                else if (nbCarteValeurIdentique == 2)//double paire ou un triple
-                {
-                    return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur, listNonPair);
-                }
-                else if (nbCarteValeurIdentique == 1)//une paire 
-                {
-                    return valeurForce = InséréValeurDansTableau(9, listeDeValeur);                
-                }
+        //        else if (nbCarteValeurIdentique == 2)//double paire ou un triple
+        //        {
+        //            return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur);
+        //        }
+        //        else if (nbCarteValeurIdentique == 1)//une paire 
+        //        {
+        //            return valeurForce = InséréValeurDansTableau(9, listeDeValeur);                
+        //        }
              
-             }
+        //     }
 
-            else
-            {
-               //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
-                if(UneSuite(listeDeValeur))
-                {
-                    //straight flush ou royal flush
-                    if(MemeSorte(carteCommune))
-                    {
-                        if (carteCommune[0].valeur==10)
-                        { return valeurForce = InséréValeurDansTableau(1, listeDeValeur); }
-                        return valeurForce=InséréValeurDansTableau(2,listeDeValeur);
-                    }
-                    //straight
-                    return valeurForce = InséréValeurDansTableau(6, listeDeValeur);
-                }
-                //si c'est une suite donc c'est un flush
-                if(MemeSorte(carteCommune))
-                {
-                    return valeurForce= InséréValeurDansTableau(5,listeDeValeur);
-                }
-            }
-            //high card
-            return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
-        }
+        //    else
+        //    {
+        //       //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
+        //        if(UneSuite(listeDeValeur))
+        //        {
+        //            //straight flush ou royal flush
+        //            if(MemeSorte(carteCommune))
+        //            {
+        //                if (carteCommune[0].valeur==10)
+        //                { return valeurForce = InséréValeurDansTableau(1, listeDeValeur); }
+        //                return valeurForce=InséréValeurDansTableau(2,listeDeValeur);
+        //            }
+        //            //straight
+        //            return valeurForce = InséréValeurDansTableau(6, listeDeValeur);
+        //        }
+        //        //si c'est une suite donc c'est un flush
+        //        if(MemeSorte(carteCommune))
+        //        {
+                    return valeurForce= InséréValeurDansTableau(9,listeDeValeur);
+        //        }
+        //    }
+        //    //high card
+        //    return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
+        //}
         private static bool MemeSorte(Carte[]carteCommunes)
         {
             bool verif = false;

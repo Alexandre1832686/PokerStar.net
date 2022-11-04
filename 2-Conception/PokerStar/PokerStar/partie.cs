@@ -284,7 +284,7 @@ namespace PokerStar
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        string ConvertirCouleur(Couleur a)
+        public static string ConvertirCouleur(Couleur a)
         {
             string retour;
             switch(a)
@@ -313,7 +313,7 @@ namespace PokerStar
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        string ConvertirValeur(int a)
+        public static string ConvertirValeur(int a)
         {
             string retour;
             if(a == 11)
