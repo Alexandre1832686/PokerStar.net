@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,17 +37,12 @@ namespace PokerStar
             List<int> listeDeValeur = new List<int>();
             List<int> listPair = new List<int>(); 
             /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
-
-
-
             //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
             for (int i = 0; i < carteCommune.Length; i++)
             {
                 listeDeValeur.Add(carteCommune[i].valeur);
             }
             listeDeValeur.Sort();
-
-
             /*Pair de carte 9  et double pair:8 et triple7 si il y'a une paire ou plus, alors  indique dans le tableau de int
             le rank du combo ainsi que la valeur(int) des carte dans le tableau en commancant par ceux utilisé dans le 
            jeux puis en ordre de puissance */
@@ -59,7 +55,6 @@ namespace PokerStar
                     listPair.Sort();
                     nbCarteValeurIdentique++;
                 }
-                
             }
             //si le nb de carte identique est plus grand que 0 
             if (nbCarteValeurIdentique > 0)
@@ -74,24 +69,60 @@ namespace PokerStar
                 }
                 else if (nbCarteValeurIdentique == 1)//une paire 
                 {
-                    return valeurForce = inséréValeurDansTableau(9, listeDeValeur);
+                    return valeurForce = InséréValeurDansTableau(9, listeDeValeur);
                 }
             }
             else
             {
-                /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
-             alors c'est une flush */
-                if (listeDeValeur[0] == listeDeValeur[1] && listeDeValeur[0] == listeDeValeur[2] && listeDeValeur[0] == listeDeValeur[3] && listeDeValeur[0] == listeDeValeur[4] &&
-                    listeDeValeur[0] == listeDeValeur[5])
+               //si c'est une suite alors commence vérification des suite pour straight /flush royal flush[...]
+                if(UneSuite(listeDeValeur))
                 {
-
+                    //straight flush ou royal flush
+                    if(MemeSorte(carteCommune))
+                    {
+                        if (carteCommune[0].valeur==10)
+                        { return valeurForce = InséréValeurDansTableau(1, listeDeValeur); }
+                        return valeurForce=InséréValeurDansTableau(2,listeDeValeur);
+                    }
+                    //straight
+                    return valeurForce = InséréValeurDansTableau(6, listeDeValeur);
+                }
+                //si c'est une suite donc c'est un flush
+                if(MemeSorte(carteCommune))
+                {
+                    return valeurForce= InséréValeurDansTableau(9,listeDeValeur);
                 }
             }
-
-
+            //high card
+            return valeurForce = InséréValeurDansTableau(10, listeDeValeur);
         }
-
-
+        private bool MemeSorte(Carte[]carteCommunes)
+        {
+            bool verif = false;
+            if (carteCommunes[0].couleur == carteCommunes[1].couleur && carteCommunes[0].couleur == carteCommunes[2].couleur && carteCommunes[0].couleur 
+                == carteCommunes[3].couleur && carteCommunes[0].couleur == carteCommunes[4].couleur && carteCommunes[0].couleur == carteCommunes[5].couleur)
+            {
+                verif = true;
+                return verif;
+            }
+            return verif;
+        }
+        /// <summary>
+        /// vérifie si c'est une suite
+        /// </summary>
+        /// <param name="listeDeValeur"></param>
+        /// <returns></returns>
+        private bool UneSuite(List<int>listeDeValeur)
+        {
+            bool verif = false;
+            if (listeDeValeur[0] == listeDeValeur[1]-1 && listeDeValeur[0] == listeDeValeur[2] - 2 && listeDeValeur[0] == listeDeValeur[3] - 3 
+                && listeDeValeur[0] == listeDeValeur[4] - 4 && listeDeValeur[0] == listeDeValeur[5] - 5 )
+            {
+                verif = true;
+                return verif;
+            }
+            else return false;
+        }
         /// <summary>
         /// Vérifie si les cartes forme un full house ou un four of a kind
         /// </summary>
@@ -100,18 +131,16 @@ namespace PokerStar
         /// <param name="listeDeValeur"></param>
         private int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
         {
-            
             //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
             {
-               return inséréValeurDansTableau( 3, listeDeValeur);
+               return InséréValeurDansTableau( 3, listeDeValeur);
             }
             else //full house
             {
-               return inséréValeurDansTableau( 4, listeDeValeur);
+               return InséréValeurDansTableau( 4, listeDeValeur);
             }
         }
-
         /// <summary>
         /// vérifie si c'est une double pair ou un triple
         /// </summary>
@@ -123,21 +152,20 @@ namespace PokerStar
             //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
             if (listPair.Count==4)//double pair
             { 
-                return inséréValeurDansTableau( 8, listeDeValeur);
+                return InséréValeurDansTableau( 8, listeDeValeur);
             }
             else //three of a kind
             {
-                return inséréValeurDansTableau(  7, listeDeValeur);
+                return InséréValeurDansTableau(  7, listeDeValeur);
             }
         }
-
         /// <summary>
         /// sert à inséré des valeurs dans le tableau
         /// </summary>
         /// <param name="valeurForce"></param>
         /// <param name="powerRank"></param>
         /// <param name="listeDeValeur"></param>
-        private int[] inséréValeurDansTableau(  int powerRank, List<int> listeDeValeur)
+        private int[] InséréValeurDansTableau(  int powerRank, List<int> listeDeValeur)
         {
             int[] valeurForce = new int[6];
             valeurForce[0] = powerRank;
@@ -154,7 +182,6 @@ namespace PokerStar
             {
                 carte = laMain[ind];
             }
-           
             return carte;
         }
     }
