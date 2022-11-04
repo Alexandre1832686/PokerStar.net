@@ -13,7 +13,7 @@ namespace PokerStar
         Joueur[] joueurs;
         Tour tour;
         public int indJoueurCourrant = 0;
-        int total = 0;
+        public static int total = 0;
 
         //constructeur
         public partie(Joueur[] j)

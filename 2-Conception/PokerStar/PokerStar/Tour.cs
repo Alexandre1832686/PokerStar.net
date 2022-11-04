@@ -42,30 +42,31 @@ namespace PokerStar
             }
             else if(etatTour == 4)
             {
-                foreach(Joueur joueur in lesJoueurs)
-                {
-                    if(joueur.GetEtat())
-                    {
-                        Carte[] ToutLesCartes = new Carte[7];
-                        for(int i =0;i<5;i++)
-                        {
-                            ToutLesCartes[i] = carteCommune[i];
-                        }
-                        ToutLesCartes[5] = joueur.GetMain().GetCarte(0);
-                        ToutLesCartes[6] = joueur.GetMain().GetCarte(1);
+                //foreach(Joueur joueur in lesJoueurs)
+                //{
+                //    if(joueur.GetEtat())
+                //    {
+                //        Carte[] ToutLesCartes = new Carte[7];
+                //        for(int i =0;i<5;i++)
+                //        {
+                //            ToutLesCartes[i] = carteCommune[i];
+                //        }
+                //        ToutLesCartes[5] = joueur.GetMain().GetCarte(0);
+                //        ToutLesCartes[6] = joueur.GetMain().GetCarte(1);
                         
-                        MainJoueur.CalculerForce(DemanderCartesAPrendre(joueur, ToutLesCartes));
+                //        MainJoueur.CalculerForce(DemanderCartesAPrendre(joueur, ToutLesCartes));
                         
-                    }
-                }
+                //    }
+                //}
                 etatTour = 0;
                 ResetTour(lesJoueurs);
                 RéinitialiserCartesCommunes();
 
 
 
-                //***********************************************      ICI POUR LEVALUATIION DU GAGNANT        *****************************************************//
-                EndTour(IsWinner(lesJoueurs));
+                //***********************************************      EndTour(IsWinner(lesJoueurs));        *****************************************************//
+                Random r = new Random();
+                EndTour(lesJoueurs[r.Next(0,4)]);
             }
 
             for (int i = position; i < inbCarteAtourner+position; i++)
@@ -173,14 +174,9 @@ namespace PokerStar
 
         void EndTour(Joueur winer)
         {
+
             
-            int total = 0;
-            foreach(Joueur j in lesJoueurs)
-            {
-                total += j.GetBet();
-                j.ResetBet();
-            }
-            winer.AddArgent(total);
+            winer.AddArgent(partie.total);
             foreach (Joueur j in lesJoueurs)
             {
                 if(j.GetArgent() == 0)
@@ -188,12 +184,19 @@ namespace PokerStar
                     GameisOver = true;
                 }
             }
+            partie.total = 0;
         }
 
+        /// <summary>
+        /// Pour le bonus! demande les 5 cartes a choisir
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="cartes"></param>
+        /// <returns></returns>
         Carte[] DemanderCartesAPrendre(Joueur j, Carte[] cartes)
         {
             Carte[] renvoie = new Carte[5];
-            bool verifFinal = false;
+            
             do
             {
                 Console.WriteLine("Quel Carte voulez vous prendre, en choisir 5 : ");
