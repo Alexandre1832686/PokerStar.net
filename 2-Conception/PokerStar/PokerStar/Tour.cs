@@ -73,6 +73,11 @@ namespace PokerStar
                 carteCommune[i].retourner(true);
             }
         }
+        /// <summary>
+        /// Pemet de savoir quelle joueur a gagnée
+        /// </summary>
+        /// <param name="lesJoueurs"></param>
+        /// <returns></returns>
         private Joueur IsWinner(Joueur[]lesJoueurs)
         {
             Joueur gagnant = lesJoueurs[0];
@@ -80,14 +85,22 @@ namespace PokerStar
 
 
             //Attribuer des vvaleurs à mains final
-            
-           
+            /*le code est pas fait mais voici comment j'aurais fait(francis):
+             j'aurais fait une fonction qui permet au joueur de chosir les 5 cinqs cartes qu'il souhaite utilisée
+            puis j'aurais ainséré c'est 4 main la dans valeur force dans l'ordre de base : joueur1,2,3,4 pour que je sache que les position 0123
+            dans la première dimension de valeurForce sois les mains des joueur en ordre puis lors de la vérification des mains la plus forte j'aurais donner a une var
+            la position de la premìère dimension du tableau pour qu'on sache quel joueur a la main la plus forte et j'aurais renvoyer le joueur du tableau de joueur
+            a la position de la valeur de la variable*/
 
+            int positionJoueurWin=0;
             int[][] valeurForce = new int[4][];
             int[] valeurPlusForte= new int[6];
             valeurPlusForte = valeurForce[4];
             for (int i = 0; i < mainsFinals.Length;i++)
             {
+                /*dans le tableau retourner par calculer force le tableau est fait de la manière suivante 
+                SI il y'A des pair les position 0 a 3 son consacré au pair triple et four of a kind[...] la position 4 est la carte la plus
+                puissante du lot et la position 5 est dédier au rank du jeux ex: straight royal flush =1 et 10 c'est high card(carte la plus haute)*/
                 valeurForce[i] = MainJoueur.CalculerForce(mainsFinals[i]);
             }
 
@@ -95,20 +108,24 @@ namespace PokerStar
            for(int i=0;i<valeurForce.Length;i++)
             {
                 //si la rank de force(position 5) est plus haut que la valeur la plus forte remplace le  
-                if (valeurPlusForte[5] < valeurForce[i][5])
+                if (valeurPlusForte[5] > valeurForce[i][5])
                 {
                     valeurPlusForte = valeurForce[i];
+                    positionJoueurWin = i;
                 }
                 //sinon si le rank de force est égale a l'autre va chercher la carte la plus haute 
                 else if(valeurPlusForte[5] == valeurForce[i][5])
                 {
+                    //lorsque valeurPlusForte obtien sa valeur, la position 4 contient la carte la plus puissante parce que dans calculer force le tableau retourner est sorte
                     if (valeurPlusForte[4] < valeurForce[i][4])
                     {
                         valeurPlusForte=valeurForce[i];
+                        positionJoueurWin=i;
                     }
                 }
                 
             }
+            gagnant = lesJoueurs[positionJoueurWin];
             return gagnant; 
         }
         /// <summary>
