@@ -18,9 +18,11 @@ namespace PokerStar
         int bet;
         bool actif;
         MainJoueur main;
+        public int nbActionDansTour;
 
         //Constructeur de Joueur
         public Joueur(string nom, string pseudo){
+            nbActionDansTour = 0;
             this.nom = nom;
             this.pseudo = pseudo;
             argent = 300;
@@ -189,7 +191,9 @@ namespace PokerStar
 
             if (reponse == 1)
             {
-                bet = argent;
+                
+                bet += argent;
+                argent = 0;
             }
 
             else
@@ -213,6 +217,11 @@ namespace PokerStar
                     Coucher();
                 }
             }
+        }
+
+        public void AddArgent(int montant)
+        {
+            argent += montant;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace PokerStar
             tour.SetJoueurs(joueurs);
         }
         
-        public int indJoueurCourrant=-1;
+        public int indJoueurCourrant=0;
         int total = 0;
         public void AfficherJeu()
         {
@@ -325,11 +325,12 @@ namespace PokerStar
                 Console.SetCursorPosition(posx + 8 * ind, posy + 1);
                 Console.Write("|    |");
                 Console.SetCursorPosition(posx + 8 * ind, posy + 2);
-                Console.Write("| " + ConvertirValeur(GetCartePublic(ind).valeur) + "  |");
+                Console.Write("| " + ConvertirValeur(GetCartePublic(ind).valeur) + " |");
                 Console.SetCursorPosition(posx + 8 * ind, posy + 3);
                 Console.Write("|  " + ConvertirCouleur(GetCartePublic(ind).couleur) + " | ");
                 Console.SetCursorPosition(posx + 8 * ind, posy + 4);
                 Console.Write(" ----");
+                
             }
             else
             {
@@ -357,6 +358,16 @@ namespace PokerStar
         public void AugmenterEtatTour()
         {
             tour.AugmenterEtatTour();
+        }
+
+        public void distribuerPot(Joueur j)
+        {
+            j.AddArgent(total);
+        }
+
+        public void CheckIfGameIsOver()
+        {
+            
         }
 
     }

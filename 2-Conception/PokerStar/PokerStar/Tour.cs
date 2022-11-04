@@ -8,6 +8,7 @@ namespace PokerStar
 {
     public class Tour
     {
+        public static bool GameisOver; 
         public Carte[] carteCommune = new Carte[5];
         int etatTour=0;
         Joueur[] lesJoueurs;
@@ -27,7 +28,7 @@ namespace PokerStar
                 position = 0;
                 inbCarteAtourner = 3;
             }
-            else if(etatTour==2 )
+            else if(etatTour==2)
             {
                 position = 3;
                 inbCarteAtourner = 1;
@@ -42,9 +43,14 @@ namespace PokerStar
                 etatTour = 0;
                 ResetTour(lesJoueurs);
                 RéinitialiserCartesCommunes();
+
+
+
+                //***********************************************      ICI POUR LEVALUATIION DU GAGNANT        *****************************************************//
+                EndTour(lesJoueurs[0]);
             }
 
-            for (int i = position; i < inbCarteAtourner; i++)
+            for (int i = position; i < inbCarteAtourner+position; i++)
             {
                 carteCommune[i].retourner(true);
             }
@@ -68,6 +74,11 @@ namespace PokerStar
         }
         public void AugmenterEtatTour()
         {
+            foreach(Joueur j in lesJoueurs)
+            {
+                j.nbActionDansTour = 0;
+            }
+
             this.etatTour++;
             ChangerEtat();
         }
@@ -85,6 +96,25 @@ namespace PokerStar
         public void SetJoueurs(Joueur[] j)
         {
             lesJoueurs = j;
+        }
+
+        void EndTour(Joueur winer)
+        {
+            
+            int total = 0;
+            foreach(Joueur j in lesJoueurs)
+            {
+                total += j.GetBet();
+                j.ResetBet();
+            }
+            winer.AddArgent(total);
+            foreach (Joueur j in lesJoueurs)
+            {
+                if(j.GetArgent() == 0)
+                {
+                    GameisOver = true;
+                }
+            }
         }
     }
 }

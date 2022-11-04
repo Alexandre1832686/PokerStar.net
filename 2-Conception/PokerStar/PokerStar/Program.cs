@@ -11,7 +11,7 @@ namespace PokerStar
     {
         static void Main(string[] args)
         {
-            
+            //bug mise min
             paquet.Brasser();
             
             
@@ -24,32 +24,78 @@ namespace PokerStar
              }
             
             partie p = new partie(joueurs);
-
+            
             bool gameisover = false;
             while(!gameisover)
             {
-                do
-                {   
-                    p.AfficherJeu();
-                    if (joueurs[p.indJoueurCourrant].GetEtat())
+                if (Tour.GameisOver)
+                {
+                    //Ajouter jouer plusieurs games
+                    //AskToPlayAgain();
+                }
+                else
+                {
+                    do
                     {
-                        p.SelectionAction(joueurs[p.indJoueurCourrant]);
-                    }
-                } while (!betisequal(joueurs));
-                p.AugmenterEtatTour();
+                        p.AfficherJeu();
+                        if (joueurs[p.indJoueurCourrant].GetEtat())
+                        {
+                            p.SelectionAction(joueurs[p.indJoueurCourrant]);
+                        }
+                    } while (!toutLeMondeAJoue(joueurs, joueurs[p.indJoueurCourrant]) || !betisequal(joueurs, p));
+                    p.AugmenterEtatTour();
+                }
             }
         }
-        static bool betisequal(Joueur[] j)
+
+
+        static bool betisequal(Joueur[] j, partie p)
         {
-            bool verif = true;
-            int maxBet = j[0].GetBet();
-            for(int i=1; i < j.Length; i++)
+            List<Joueur> joueurDebout = new List<Joueur>();
+            
+
+            foreach (Joueur joueur in j)
             {
-                if(j[i].GetBet() != maxBet)
+                if(joueur.GetEtat())
+                {
+                    joueurDebout.Add(joueur);
+                }
+            }
+            
+            if(joueurDebout.Count()==1)
+            {
+                p.distribuerPot(joueurDebout[0]);
+                return true;
+            }
+            else
+            {
+                bool verif = true;
+                int maxBet = joueurDebout[0].GetBet();
+                for (int i = 1; i < joueurDebout.Count; i++)
+                {
+                    if (joueurDebout[i].GetBet() != maxBet)
+                    {
+                        verif = false;
+                    }
+                }
+                return verif;
+            }
+        }
+
+        static bool toutLeMondeAJoue(Joueur[] j, Joueur joueurActu)
+        { 
+            joueurActu.nbActionDansTour++;
+
+            bool verif = true;
+
+            foreach(Joueur joueur in j)
+            {
+                if(joueur.nbActionDansTour==0)
                 {
                     verif = false;
                 }
             }
+
             return verif;
         }
     }
