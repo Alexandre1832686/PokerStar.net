@@ -63,28 +63,60 @@ namespace PokerStar
             ////
             if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
             {
-                VérifSiFourFullHouse(listPair);
+                return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
             }
             else if (nbCarteValeurIdentique == 2)//double paire ou un triple
             {
-                inséréValeurDansTableau(ref valeurForce, 8, listeDeValeur);
+                return valeurForce=VerifSiDouleOuTriplePair(listPair,  listeDeValeur);
             }
             else if (nbCarteValeurIdentique == 1)//une paire 
             {
-                inséréValeurDansTableau(ref valeurForce, 9, listeDeValeur);
+                return valeurForce=inséréValeurDansTableau(  9, listeDeValeur);
             }
+            
             ///////////////////////////////////////////////////////////////
             /*flush 5 si toute les carte ne sont pas une suite et qu'ils ont toute la même sorte, 
              alros c'est une flush */
-            return valeurForce;
+            
         }
 
-        private void VérifSiFourFullHouse(List<int> listPair)
+
+        /// <summary>
+        /// Vérifie si les cartes forme un full house ou un four of a kind
+        /// </summary>
+        /// <param name="listPair"></param>
+        /// <param name="valeurForce"></param>
+        /// <param name="listeDeValeur"></param>
+        private int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
         {
-            //si la .count est égale a 4 et si la valeur de point count est égale a 5 c'est une fullhouse
+            
+            //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
             {
-                //inséréValeurDansTableau(ref valeurForce, 8, listeDeValeur);
+               return inséréValeurDansTableau( 3, listeDeValeur);
+            }
+            else //full house
+            {
+               return inséréValeurDansTableau( 4, listeDeValeur);
+            }
+        }
+
+        /// <summary>
+        /// vérifie si c'est une double pair ou un triple
+        /// </summary>
+        /// <param name="listPair"></param>
+        /// <param name="valeurForce"></param>
+        /// <param name="listeDeValeur"></param>
+        private int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
+        {
+            //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
+            if (listPair.Count==4)//double pair
+            { 
+                return inséréValeurDansTableau( 8, listeDeValeur);
+            }
+            else //three of a kind
+            {
+                return inséréValeurDansTableau(  7, listeDeValeur);
             }
         }
 
@@ -94,13 +126,15 @@ namespace PokerStar
         /// <param name="valeurForce"></param>
         /// <param name="powerRank"></param>
         /// <param name="listeDeValeur"></param>
-        private void inséréValeurDansTableau(ref int[] valeurForce, int powerRank, List<int> listeDeValeur)
+        private int[] inséréValeurDansTableau(  int powerRank, List<int> listeDeValeur)
         {
+            int[] valeurForce = new int[6];
             valeurForce[0] = powerRank;
             for (int i = 1; i < valeurForce.Length; i++)
             {
                 valeurForce[i] = listeDeValeur[i];
             }
+            return valeurForce; 
         }
         public Carte GetCarte(int ind)
         {
