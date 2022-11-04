@@ -16,7 +16,6 @@ namespace PokerStar
             //initialisation
             paquet.Brasser();
             Joueur[] joueurs = new Joueur[4];
-            Random rand = new Random();
              for(int i = 0; i < 4; i++)
              {
                 Tuple<string, string> Joueur = NomPseudo();
@@ -48,11 +47,10 @@ namespace PokerStar
                             p.SelectionAction(joueurs[p.indJoueurCourrant]);
                         }
                     } while (!toutLeMondeAJoue(joueurs, joueurs[p.indJoueurCourrant]) || !betisequal(joueurs, p));
-
-                    //change l'étape et reset les bets
-                    for (int i = 0; i < 4; i++)
+                     //change l'étape et reset les bets
+                    foreach (Joueur i in joueurs)
                     {
-                        joueurs[i].ResetBet();
+                        i.ResetBet();
                     }
                     p.AugmenterEtatTour();
                 }
@@ -126,8 +124,12 @@ namespace PokerStar
         //demande les nom et pseudo pour la création du joueur
         static Tuple<string,string> NomPseudo()
         {
+            if (x > 4)
+            {
+                x = 1;
+            }
             string nom, pseudo;
-            
+            Console.Clear();
 
             Console.WriteLine("Joueur " + x + " Quel est votre nom :");
             nom = Console.ReadLine();
