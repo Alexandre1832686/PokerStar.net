@@ -35,8 +35,8 @@ namespace PokerStar
         //{
         //    int[] valeurForce = new int[6];
         //    List<int> listeDeValeur = new List<int>();
-        //    List<int> listPair = new List<int>(); 
-        //    /*vérification en ordre de puissance 1(royal flush)[...],10(highCard)*/
+            List<int> listPair = new List<int>();
+            List<int> listNonPair = new List<int>();
         //    //pour chaque carte dans les cartesCommune insère la valeur(int) dans la listsDeValeur
         //    for (int i = 0; i < carteCommune.Length; i++)
         //    {
@@ -56,16 +56,23 @@ namespace PokerStar
         //            nbCarteValeurIdentique++;
         //        }
         //    }
+                else// ajouter les carte non paire pour les rajouter a listpair a la fin 
+                {
+                    listNonPair.Add(listeDeValeur[i]);
+                    listNonPair.Sort();
+                }
+            }
+            
             //si le nb de carte identique est plus grand que 0 
             if (nbCarteValeurIdentique > 0)
             {
                 if (nbCarteValeurIdentique == 3)//une four of a kind ou full house
                 {
-                    return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur);
+                    return valeurForce = VerifSiFourFullHouse(listPair, listeDeValeur,listNonPair);
                 }
                 else if (nbCarteValeurIdentique == 2)//double paire ou un triple
                 {
-                    return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur);
+                    return valeurForce = VerifSiDouleOuTriplePair(listPair, listeDeValeur, listNonPair);
                 }
                 else if (nbCarteValeurIdentique == 1)//une paire 
                 {
@@ -118,7 +125,7 @@ namespace PokerStar
         {
             bool verif = false;
             if (listeDeValeur[0] == listeDeValeur[1]-1 && listeDeValeur[0] == listeDeValeur[2] - 2 && listeDeValeur[0] == listeDeValeur[3] - 3 
-                && listeDeValeur[0] == listeDeValeur[4] - 4 && listeDeValeur[0] == listeDeValeur[5] - 5 )
+                && listeDeValeur[0] == listeDeValeur[4] - 4 )
             {
                 verif = true;
                 return verif;
@@ -131,16 +138,24 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
-        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur)
+        private static int[] VerifSiFourFullHouse(List<int> listPair, List <int> listeDeValeur, List<int> listNonPair)
         {
             //si la .count est égale a 4  c'est un four of a kind et si la valeur de point count est égale a 5 c'est une fullhouse
             if(listPair.Count==4)//four of a kind
             {
-               return InséréValeurDansTableau( 3, listeDeValeur);
+                for(int i=0;i<listNonPair.Count;i++)
+                {
+                    listPair.Add(listNonPair[i]);
+                }
+               return InséréValeurDansTableau( 3, listPair);
             }
             else //full house
             {
-               return InséréValeurDansTableau( 4, listeDeValeur);
+                for (int i = 0; i < listNonPair.Count; i++)
+                {
+                    listPair.Add(listNonPair[i]);
+                }
+                return InséréValeurDansTableau( 4, listPair);
             }
         }
         /// <summary>
@@ -149,16 +164,24 @@ namespace PokerStar
         /// <param name="listPair"></param>
         /// <param name="valeurForce"></param>
         /// <param name="listeDeValeur"></param>
-        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur)
+        private static int [] VerifSiDouleOuTriplePair(List<int> listPair,  List<int> listeDeValeur, List<int> listNonPair)
         {
             //si la .count est égale a 4  c'est un double pair et si la valeur de point count est égale a 3 c'est un triple
             if (listPair.Count==4)//double pair
-            { 
-                return InséréValeurDansTableau( 8, listeDeValeur);
+            {
+                for (int i = 0; i < listNonPair.Count; i++)
+                {
+                    listPair.Add(listNonPair[i]);
+                }
+                return InséréValeurDansTableau( 8, listPair);
             }
             else //three of a kind
             {
-                return InséréValeurDansTableau(  7, listeDeValeur);
+                for (int i = 0; i < listNonPair.Count; i++)
+                {
+                    listPair.Add(listNonPair[i]);
+                }
+                return InséréValeurDansTableau(  7, listPair);
             }
         }
         /// <summary>

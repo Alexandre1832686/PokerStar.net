@@ -48,13 +48,40 @@ namespace PokerStar
 
 
                 //***********************************************      ICI POUR LEVALUATIION DU GAGNANT        *****************************************************//
-                EndTour(lesJoueurs[0]);
+                EndTour(IsWinner(lesJoueurs));
             }
 
             for (int i = position; i < inbCarteAtourner+position; i++)
             {
                 carteCommune[i].retourner(true);
             }
+        }
+        private Joueur IsWinner(Joueur[]lesJoueurs)
+        {
+            Joueur gagnant = lesJoueurs[0];
+            Carte[][] mainsFinals = new Carte[lesJoueurs.Length][];
+
+
+            //Attribuer des vvaleurs à mains final
+            
+
+
+            int[][] valeurForce = new int[4][];
+
+            for (int i = 0; i < mainsFinals.Length;i++)
+            {
+                valeurForce[i] = MainJoueur.CalculerForce(mainsFinals[i]);
+            }
+
+            //comparer les valeurs force pis les si le plus fort ses valeurForce[2][], gagnant = lesjoeuurs[2]
+           for(int i=0;i<valeurForce.Length;i++)
+            {
+                for(int j = 0; j < valeurForce[i].Length;j++)
+                {
+
+                }
+            }
+            return gagnant; 
         }
         /// <summary>
         /// Permet de resetter les mains et l'état des joueur ainsi que remettre face cacher les carte commune
